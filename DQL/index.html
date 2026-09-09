@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DQL - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="../index.html" title="Volver">
+        ←
+    </a>
+
+    pablocossio.net
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        DQL
+    </h1>
+
+    <p class="subtitulo">
+        Data Query Language · Lenguaje de Consulta de Datos
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>🔎 ¿Qué es DQL?</h2>
+
+        <p>
+            DQL significa
+            <span class="clave">Data Query Language</span>
+            y se utiliza para consultar
+            información almacenada en una base de datos.
+        </p>
+
+        <p>
+            La instrucción principal de DQL es:
+        </p>
+
+        <pre>
+SELECT
+        </pre>
+
+        <p>
+            A partir de
+            <span class="clave">SELECT</span>
+            podemos agregar distintas cláusulas
+            para filtrar, ordenar, agrupar
+            o combinar información.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Seleccioná un tema para estudiar
+            las distintas partes de una consulta SELECT.
+        </p>
+
+        <div class="grid-indice">
+
+
+            <a href="select.html" class="tarjeta-indice">
+
+                <h3>SELECT</h3>
+
+                <h5 class="enlacesInternos">
+                    Consultar datos
+                </h5>
+
+            </a>
+
+
+            <a href="where.html" class="tarjeta-indice">
+
+                <h3>WHERE</h3>
+
+                <h5 class="enlacesInternos">
+                    Filtrar registros
+                </h5>
+
+            </a>
+
+
+            <a href="distinct.html" class="tarjeta-indice">
+
+                <h3>DISTINCT</h3>
+
+                <h5 class="enlacesInternos">
+                    Evitar repetidos
+                </h5>
+
+            </a>
+
+
+            <a href="order-by.html" class="tarjeta-indice">
+
+                <h3>ORDER BY</h3>
+
+                <h5 class="enlacesInternos">
+                    Ordenar resultados
+                </h5>
+
+            </a>
+
+
+            <a href="limit.html" class="tarjeta-indice">
+
+                <h3>LIMIT</h3>
+
+                <h5 class="enlacesInternos">
+                    Limitar resultados
+                </h5>
+
+            </a>
+
+
+            <a href="group-by.html" class="tarjeta-indice">
+
+                <h3>GROUP BY</h3>
+
+                <h5 class="enlacesInternos">
+                    Agrupar registros
+                </h5>
+
+            </a>
+
+
+            <a href="having.html" class="tarjeta-indice">
+
+                <h3>HAVING</h3>
+
+                <h5 class="enlacesInternos">
+                    Filtrar grupos
+                </h5>
+
+            </a>
+
+
+            <a href="join.html" class="tarjeta-indice">
+
+                <h3>JOIN</h3>
+
+                <h5 class="enlacesInternos">
+                    Relacionar tablas
+                </h5>
+
+            </a>
+
+
+            <a href="funciones.html" class="tarjeta-indice">
+
+                <h3>FUNCIONES</h3>
+
+                <h5 class="enlacesInternos">
+                    COUNT · SUM · AVG
+                </h5>
+
+            </a>
+
+
+            <a href="subconsultas.html" class="tarjeta-indice">
+
+                <h3>SUBCONSULTAS</h3>
+
+                <h5 class="enlacesInternos">
+                    SELECT dentro de SELECT
+                </h5>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ESTRUCTURA SELECT
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>🧩 Estructura de una consulta</h2>
+
+        <p>
+            Una consulta puede combinar
+            varias cláusulas.
+        </p>
+
+        <pre>
+SELECT columnas
+FROM tabla
+WHERE condicion
+GROUP BY columna
+HAVING condicion
+ORDER BY columna
+LIMIT cantidad;
+        </pre>
+
+        <p>
+            No todas las cláusulas
+            son obligatorias.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo</h2>
+
+        <pre>
+SELECT nombre, edad
+FROM alumnos
+WHERE edad >= 18
+ORDER BY nombre;
+        </pre>
+
+        <p>
+            Esta consulta:
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>SELECT</h3>
+
+                <p>
+                    Indica qué columnas
+                    queremos mostrar.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>FROM</h3>
+
+                <p>
+                    Indica de qué tabla
+                    obtenemos los datos.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>WHERE</h3>
+
+                <p>
+                    Filtra solamente
+                    los alumnos mayores
+                    o iguales a 18.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>ORDER BY</h3>
+
+                <p>
+                    Ordena el resultado
+                    por nombre.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         IDEA CLAVE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>💡 Idea clave</h2>
+
+        <pre>
+DQL
+ ↓
+SELECT
+ ↓
+Consultar información
+ ↓
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
+JOIN
+        </pre>
+
+        <p>
+            <span class="importante">
+                SELECT es la instrucción principal.
+            </span>
+        </p>
+
+        <p>
+            Las demás palabras permiten
+            construir consultas más completas.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DQL
+</footer>
+
+</body>
+
+</html>
