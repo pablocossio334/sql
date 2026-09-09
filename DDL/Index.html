@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DDL - Instrucciones SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+
+<body>
+
+
+<header>
+    <img src="../img/LOGO.png" alt="">
+    <a class="volver" href="../index.html" title="Volver al inicio">
+        ←
+    </a>
+    
+</header>
+
+
+<main>
+
+
+    <h1 class="titulo">
+        Instrucciones DDL
+    </h1>
+
+    <p class="subtitulo">
+        Data Definition Language
+    </p>
+
+
+    <div class="linea"></div>
+
+
+    <div class="descripcion">
+
+        <strong>DDL</strong> agrupa las instrucciones SQL
+        utilizadas para crear, modificar y eliminar
+        la estructura de una base de datos.
+
+    </div>
+
+
+
+    <section class="contenedor">
+
+
+        <!-- CREATE -->
+
+        <a href="create.html" class="tarjeta">
+
+            <div class="icono">
+                ➕
+            </div>
+
+            <h2>
+                CREATE
+            </h2>
+
+            <p>
+                Permite crear nuevos elementos dentro
+                de una base de datos, como bases,
+                tablas o vistas.
+            </p>
+
+            <code>
+                CREATE TABLE alumnos (...);
+            </code>
+
+        </a>
+
+
+
+        <!-- ALTER -->
+
+        <a href="alter.html" class="tarjeta">
+
+            <div class="icono">
+                🛠️
+            </div>
+
+            <h2>
+                ALTER
+            </h2>
+
+            <p>
+                Permite modificar la estructura
+                de una tabla que ya existe.
+            </p>
+
+            <code>
+                ALTER TABLE alumnos ADD edad INT;
+            </code>
+
+        </a>
+
+
+
+        <!-- DROP -->
+
+        <a href="drop.html" class="tarjeta">
+
+            <div class="icono">
+                🗑️
+            </div>
+
+            <h2>
+                DROP
+            </h2>
+
+            <p>
+                Elimina completamente un objeto
+                de la base de datos junto con
+                su estructura.
+            </p>
+
+            <code>
+                DROP TABLE alumnos;
+            </code>
+
+        </a>
+
+
+
+        <!-- TRUNCATE -->
+
+        <a href="truncate.html" class="tarjeta">
+
+            <div class="icono">
+                🧹
+            </div>
+
+            <h2>
+                TRUNCATE
+            </h2>
+
+            <p>
+                Elimina todos los registros
+                de una tabla conservando
+                su estructura.
+            </p>
+
+            <code>
+                TRUNCATE TABLE alumnos;
+            </code>
+
+        </a>
+
+
+
+        <!-- RENAME -->
+
+        <a  href="rename.html"  class="tarjeta">
+
+            <div class="icono">
+                ✏️
+            </div>
+
+            <h2>
+                RENAME
+            </h2>
+
+            <p>
+                Permite cambiar el nombre
+                de un objeto existente,
+                como una tabla.
+            </p>
+
+            <code>
+                RENAME TABLE alumnos TO estudiantes;
+            </code>
+
+        </a>
+
+
+
+    </section>
+
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DDL
+</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TCL - Instrucciones SQL</title>
+
+   <link rel="stylesheet" href="../estilos.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <a class="volver" href="../index.html" title="Volver al inicio">
+        ←
+    </a>
+
+   <img src="../img/LOGO.png" alt="">
+
+</header>
+
+<main>
+
+    <h1 class="titulo">
+        Instrucciones TCL
+    </h1>
+
+    <p class="subtitulo">
+        Transaction Control Language
+    </p>
+
+    <div class="linea"></div>
+
+    <div class="descripcion">
+        <strong>TCL</strong> agrupa las instrucciones SQL
+        utilizadas para controlar transacciones, confirmar
+        cambios o deshacer operaciones realizadas sobre los datos.
+    </div>
+
+    <section class="contenedor">
+
+        <div class="tarjeta">
+
+            <div class="icono">▶️</div>
+
+            <h2>START TRANSACTION</h2>
+
+            <p>
+                Inicia una transacción. Las operaciones realizadas
+                después podrán confirmarse o deshacerse.
+            </p>
+
+            <code>
+                START TRANSACTION;
+            </code>
+
+        </div>
+
+
+        <div class="tarjeta">
+
+            <div class="icono">✅</div>
+
+            <h2>COMMIT</h2>
+
+            <p>
+                Confirma definitivamente todos los cambios
+                realizados durante la transacción.
+            </p>
+
+            <code>
+                COMMIT;
+            </code>
+
+        </div>
+
+
+        <div class="tarjeta">
+
+            <div class="icono">↩️</div>
+
+            <h2>ROLLBACK</h2>
+
+            <p>
+                Deshace los cambios realizados desde el inicio
+                de la transacción o desde un punto de guardado.
+            </p>
+
+            <code>
+                ROLLBACK;
+            </code>
+
+        </div>
+
+
+        <div class="tarjeta">
+
+            <div class="icono">📍</div>
+
+            <h2>SAVEPOINT</h2>
+
+            <p>
+                Crea un punto de guardado dentro de una transacción
+                al que se puede regresar posteriormente.
+            </p>
+
+            <code>
+                SAVEPOINT punto1;
+            </code>
+
+        </div>
+
+
+        <div class="tarjeta">
+
+            <div class="icono">⏪</div>
+
+            <h2>ROLLBACK TO</h2>
+
+            <p>
+                Permite deshacer los cambios realizados después
+                de un SAVEPOINT sin cancelar toda la transacción.
+            </p>
+
+            <code>
+                ROLLBACK TO punto1;
+            </code>
+
+        </div>
+
+
+        <div class="tarjeta">
+
+            <div class="icono">🗑️</div>
+
+            <h2>RELEASE SAVEPOINT</h2>
+
+            <p>
+                Elimina un punto de guardado creado previamente
+                dentro de una transacción.
+            </p>
+
+            <code>
+                RELEASE SAVEPOINT punto1;
+            </code>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    pablocossio.net · SQL · TCL
+</footer>
+
+</body>
+
+</html>

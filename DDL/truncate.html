@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TRUNCATE TABLE - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DDL">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        TRUNCATE TABLE
+    </h1>
+
+    <p class="subtitulo">
+        Vaciar completamente una tabla
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+
+            <a href="#que-es" class="tarjeta-indice">
+
+                <h3>1. Introducción</h3>
+
+                <h5 class="enlacesInternos">
+                    ¿Qué hace TRUNCATE?
+                </h5>
+
+            </a>
+
+
+            <a href="#sintaxis" class="tarjeta-indice">
+
+                <h3>2. Sintaxis</h3>
+
+                <h5 class="enlacesInternos">
+                    Forma general
+                </h5>
+
+            </a>
+
+
+            <a href="#estructura" class="tarjeta-indice">
+
+                <h3>3. Estructura</h3>
+
+                <h5 class="enlacesInternos">
+                    ¿Qué se conserva?
+                </h5>
+
+            </a>
+
+
+            <a href="#autoincrement" class="tarjeta-indice">
+
+                <h3>4. AUTO_INCREMENT</h3>
+
+                <h5 class="enlacesInternos">
+                    Reinicio del contador
+                </h5>
+
+            </a>
+
+
+            <a href="#where" class="tarjeta-indice">
+
+                <h3>5. WHERE</h3>
+
+                <h5 class="enlacesInternos">
+                    ¿Se puede filtrar?
+                </h5>
+
+            </a>
+
+
+            <a href="#foreign-key" class="tarjeta-indice">
+
+                <h3>6. FOREIGN KEY</h3>
+
+                <h5 class="enlacesInternos">
+                    Tablas relacionadas
+                </h5>
+
+            </a>
+
+
+            <a href="#comparacion" class="tarjeta-indice">
+
+                <h3>7. Comparación</h3>
+
+                <h5 class="enlacesInternos">
+                    DELETE, TRUNCATE y DROP
+                </h5>
+
+            </a>
+
+
+            <a href="#cuando-usar" class="tarjeta-indice">
+
+                <h3>8. Cuándo usar</h3>
+
+                <h5 class="enlacesInternos">
+                    Casos comunes
+                </h5>
+
+            </a>
+
+
+            <a href="#atencion" class="tarjeta-indice">
+
+                <h3>9. Atención</h3>
+
+                <h5 class="enlacesInternos">
+                    Operación destructiva
+                </h5>
+
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+
+                <h3>10. Resumen</h3>
+
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace TRUNCATE TABLE?</h2>
+
+        <p>
+            La instrucción
+            <span class="clave">TRUNCATE TABLE</span>
+            elimina todos los registros almacenados
+            dentro de una tabla.
+        </p>
+
+        <p>
+            A diferencia de
+            <span class="clave">DROP TABLE</span>,
+            la tabla continúa existiendo.
+        </p>
+
+        <p>
+            Es decir, se eliminan los datos
+            pero se conserva la estructura.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis general</h2>
+
+        <pre>
+TRUNCATE TABLE nombre_tabla;
+        </pre>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+TRUNCATE TABLE alumnos;
+        </pre>
+
+        <p>
+            Esto elimina todos los registros
+            de la tabla
+            <span class="clave">alumnos</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#estructura">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ANTES Y DESPUÉS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Antes de TRUNCATE</h2>
+
+        <pre>
+idAlumno    nombre
+-------------------
+1           Ana
+2           Juan
+3           Pedro
+        </pre>
+
+        <p>
+            Ejecutamos:
+        </p>
+
+        <pre>
+TRUNCATE TABLE alumnos;
+        </pre>
+
+        <p>
+            Después:
+        </p>
+
+        <pre>
+idAlumno    nombre
+-------------------
+        </pre>
+
+        <p>
+            La tabla continúa existiendo,
+            pero ahora está vacía.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ESTRUCTURA
+    ========================== -->
+
+    <section class="bloque" id="estructura">
+
+        <h2>3. ¿Qué se conserva?</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Columnas</h3>
+
+                <p>
+                    Las columnas de la tabla
+                    siguen existiendo.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tipos de datos</h3>
+
+                <p>
+                    Los tipos de datos
+                    permanecen sin cambios.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>PRIMARY KEY</h3>
+
+                <p>
+                    La clave primaria
+                    continúa definida.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Restricciones</h3>
+
+                <p>
+                    Las restricciones de la tabla
+                    forman parte de su estructura
+                    y se conservan.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#autoincrement">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         AUTO_INCREMENT
+    ========================== -->
+
+    <section class="bloque" id="autoincrement">
+
+        <h2>4. AUTO_INCREMENT</h2>
+
+        <p>
+            En MySQL y MariaDB,
+            <span class="clave">TRUNCATE TABLE</span>
+            normalmente reinicia el contador
+            de una columna
+            <span class="clave">AUTO_INCREMENT</span>.
+        </p>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    idAlumno INT
+    PRIMARY KEY
+    AUTO_INCREMENT,
+
+    nombre VARCHAR(100)
+
+);
+        </pre>
+
+        <p>
+            Supongamos que tenemos:
+        </p>
+
+        <pre>
+idAlumno
+---------
+1
+2
+3
+4
+        </pre>
+
+        <p>
+            Ejecutamos:
+        </p>
+
+        <pre>
+TRUNCATE TABLE alumnos;
+        </pre>
+
+        <p>
+            El próximo registro normalmente
+            comenzará nuevamente desde:
+        </p>
+
+        <pre>
+idAlumno = 1
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#estructura">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#where">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         WHERE
+    ========================== -->
+
+    <section class="bloque" id="where">
+
+        <h2>5. TRUNCATE y WHERE</h2>
+
+        <p>
+            <span class="importante">
+                TRUNCATE no permite utilizar WHERE.
+            </span>
+        </p>
+
+        <p>
+            Siempre elimina todos los registros
+            de la tabla.
+        </p>
+
+        <pre>
+TRUNCATE TABLE alumnos;
+        </pre>
+
+        <p>
+            Esto NO es válido:
+        </p>
+
+        <pre>
+TRUNCATE TABLE alumnos
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            Si queremos eliminar solamente algunos registros,
+            debemos utilizar
+            <span class="clave">DELETE</span>.
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#autoincrement">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#foreign-key">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque" id="foreign-key">
+
+        <h2>6. TRUNCATE y FOREIGN KEY</h2>
+
+        <p>
+            Si una tabla está siendo referenciada
+            por una
+            <span class="clave">FOREIGN KEY</span>,
+            MySQL puede impedir ejecutar
+            <span class="clave">TRUNCATE</span>.
+        </p>
+
+        <pre>
+cursos
+   ↑
+   |
+alumnos.idCurso
+        </pre>
+
+        <p>
+            Esto ocurre para proteger
+            las relaciones entre las tablas.
+        </p>
+
+        <p>
+            Por ejemplo, si
+            <span class="clave">alumnos.idCurso</span>
+            referencia a
+            <span class="clave">cursos.idCurso</span>,
+            debemos tener en cuenta esa relación
+            antes de vaciar las tablas.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#where">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#comparacion">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         COMPARACIÓN
+    ========================== -->
+
+    <section class="bloque" id="comparacion">
+
+        <h2>7. DELETE vs TRUNCATE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>DELETE</h3>
+
+                <p>
+                    Permite eliminar todos los registros
+                    o solamente algunos.
+                </p>
+
+                <pre>
+DELETE FROM alumnos
+WHERE edad &lt; 18;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>TRUNCATE</h3>
+
+                <p>
+                    Elimina siempre todos
+                    los registros.
+                </p>
+
+                <pre>
+TRUNCATE TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>TRUNCATE vs DROP TABLE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>TRUNCATE</h3>
+
+                <p>
+                    Elimina los datos,
+                    pero conserva la tabla.
+                </p>
+
+                <pre>
+TRUNCATE TABLE alumnos;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP TABLE</h3>
+
+                <p>
+                    Elimina los datos
+                    y también la estructura.
+                </p>
+
+                <pre>
+DROP TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Comparación rápida</h2>
+
+        <pre>
+DELETE
+     ↓
+Elimina registros
+Puede usar WHERE
+Conserva estructura
+
+
+TRUNCATE
+     ↓
+Elimina TODOS los registros
+No usa WHERE
+Conserva estructura
+
+
+DROP TABLE
+     ↓
+Elimina registros
++
+Elimina estructura
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#foreign-key">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#cuando-usar">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CUÁNDO USAR
+    ========================== -->
+
+    <section class="bloque" id="cuando-usar">
+
+        <h2>8. ¿Cuándo usar TRUNCATE?</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Vaciar una tabla</h3>
+
+                <p>
+                    Cuando necesitamos eliminar
+                    todos sus registros.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Conservar la tabla</h3>
+
+                <p>
+                    Cuando queremos seguir utilizando
+                    la misma estructura.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Datos de prueba</h3>
+
+                <p>
+                    Puede utilizarse para limpiar
+                    una tabla después de realizar pruebas.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Reiniciar datos</h3>
+
+                <p>
+                    Cuando queremos comenzar nuevamente
+                    con una tabla vacía.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#comparacion">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#atencion">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ATENCIÓN
+    ========================== -->
+
+    <section class="bloque" id="atencion">
+
+        <h2>9. ⚠️ Atención</h2>
+
+        <p>
+            <span class="clave">TRUNCATE TABLE</span>
+            es una operación que elimina
+            todos los registros de la tabla.
+        </p>
+
+        <p>
+            No podemos indicar qué filas queremos eliminar,
+            porque no admite una condición
+            <span class="clave">WHERE</span>.
+        </p>
+
+        <pre>
+TRUNCATE TABLE alumnos;
+        ↓
+Se eliminan TODOS
+los registros
+        </pre>
+
+        <p>
+            Antes de ejecutarlo debemos asegurarnos
+            de que realmente queremos vaciar
+            completamente la tabla.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#cuando-usar">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+TRUNCATE TABLE alumnos;
+          ↓
+Eliminar registros
+          ↓
+TODOS los registros
+          ↓
+La tabla permanece
+          ↓
+La estructura permanece
+        </pre>
+
+        <p>
+            Una forma sencilla de recordarlo:
+        </p>
+
+        <pre>
+DELETE
+   ↓
+BORRAR registros
+
+
+TRUNCATE
+   ↓
+VACIAR tabla
+
+
+DROP
+   ↓
+ELIMINAR tabla
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DDL · TRUNCATE TABLE
+</footer>
+
+</body>
+
+</html>

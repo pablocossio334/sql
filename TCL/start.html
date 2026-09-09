@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>START TRANSACTION - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a TCL">
+        ←
+    </a>
+
+    pablocossio.net
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        START TRANSACTION
+    </h1>
+
+    <p class="subtitulo">
+        Iniciar una transacción
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué es una transacción?
+                </h5>
+            </a>
+
+
+            <a href="#sintaxis" class="tarjeta-indice">
+                <h3>2. Sintaxis</h3>
+                <h5 class="enlacesInternos">
+                    START TRANSACTION
+                </h5>
+            </a>
+
+
+            <a href="#funcionamiento" class="tarjeta-indice">
+                <h3>3. Funcionamiento</h3>
+                <h5 class="enlacesInternos">
+                    Cómo trabaja
+                </h5>
+            </a>
+
+
+            <a href="#commit" class="tarjeta-indice">
+                <h3>4. COMMIT</h3>
+                <h5 class="enlacesInternos">
+                    Confirmar cambios
+                </h5>
+            </a>
+
+
+            <a href="#rollback" class="tarjeta-indice">
+                <h3>5. ROLLBACK</h3>
+                <h5 class="enlacesInternos">
+                    Deshacer cambios
+                </h5>
+            </a>
+
+
+            <a href="#ejemplo" class="tarjeta-indice">
+                <h3>6. Ejemplo</h3>
+                <h5 class="enlacesInternos">
+                    Transferencia bancaria
+                </h5>
+            </a>
+
+
+            <a href="#autocommit" class="tarjeta-indice">
+                <h3>7. AUTOCOMMIT</h3>
+                <h5 class="enlacesInternos">
+                    Confirmación automática
+                </h5>
+            </a>
+
+
+            <a href="#errores" class="tarjeta-indice">
+                <h3>8. Errores</h3>
+                <h5 class="enlacesInternos">
+                    Problemas comunes
+                </h5>
+            </a>
+
+
+            <a href="#cuando-usar" class="tarjeta-indice">
+                <h3>9. Cuándo usar</h3>
+                <h5 class="enlacesInternos">
+                    Casos recomendados
+                </h5>
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué es una transacción?</h2>
+
+        <p>
+            Una <span class="clave">transacción</span>
+            es un conjunto de operaciones SQL
+            que se ejecutan como una unidad.
+        </p>
+
+        <p>
+            Esto permite decidir al final
+            si los cambios se guardan
+            o si se deshacen.
+        </p>
+
+        <pre>
+Transacción
+    ↓
+Varias operaciones SQL
+    ↓
+COMMIT
+o
+ROLLBACK
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis</h2>
+
+        <p>
+            Para comenzar una transacción
+            utilizamos:
+        </p>
+
+        <pre>
+START TRANSACTION;
+        </pre>
+
+        <p>
+            A partir de ese momento,
+            las operaciones que realizamos
+            pueden ser confirmadas con
+            <span class="clave">COMMIT</span>
+            o deshechas con
+            <span class="clave">ROLLBACK</span>.
+        </p>
+
+        <pre>
+START TRANSACTION;
+
+UPDATE ...;
+
+INSERT ...;
+
+DELETE ...;
+
+COMMIT;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#funcionamiento">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FUNCIONAMIENTO
+    ========================== -->
+
+    <section class="bloque" id="funcionamiento">
+
+        <h2>3. ¿Cómo funciona?</h2>
+
+        <p>
+            Al iniciar una transacción,
+            los cambios quedan pendientes
+            hasta que decidimos qué hacer con ellos.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>1. Iniciar</h3>
+
+                <pre>
+START TRANSACTION;
+                </pre>
+
+                <p>
+                    Comienza la transacción.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>2. Ejecutar cambios</h3>
+
+                <pre>
+UPDATE
+INSERT
+DELETE
+                </pre>
+
+                <p>
+                    Se realizan las operaciones.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>3. Decidir</h3>
+
+                <pre>
+COMMIT
+
+o
+
+ROLLBACK
+                </pre>
+
+                <p>
+                    Confirmamos o deshacemos.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#commit">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         COMMIT
+    ========================== -->
+
+    <section class="bloque" id="commit">
+
+        <h2>4. Confirmar con COMMIT</h2>
+
+        <p>
+            Si todo salió correctamente,
+            utilizamos
+            <span class="clave">COMMIT</span>
+            para guardar definitivamente
+            los cambios.
+        </p>
+
+        <pre>
+START TRANSACTION;
+
+UPDATE cuentas
+SET saldo = saldo - 1000
+WHERE id = 1;
+
+UPDATE cuentas
+SET saldo = saldo + 1000
+WHERE id = 2;
+
+COMMIT;
+        </pre>
+
+        <p>
+            Después de ejecutar
+            <span class="clave">COMMIT</span>,
+            los cambios quedan confirmados.
+        </p>
+
+        <pre>
+START TRANSACTION
+      ↓
+Cambios
+      ↓
+COMMIT
+      ↓
+GUARDAR
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#funcionamiento">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#rollback">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ROLLBACK
+    ========================== -->
+
+    <section class="bloque" id="rollback">
+
+        <h2>5. Deshacer con ROLLBACK</h2>
+
+        <p>
+            Si detectamos un problema,
+            podemos utilizar
+            <span class="clave">ROLLBACK</span>
+            para cancelar los cambios
+            realizados durante la transacción.
+        </p>
+
+        <pre>
+START TRANSACTION;
+
+UPDATE cuentas
+SET saldo = saldo - 1000
+WHERE id = 1;
+
+UPDATE cuentas
+SET saldo = saldo + 1000
+WHERE id = 2;
+
+ROLLBACK;
+        </pre>
+
+        <p>
+            Los cambios realizados
+            desde el inicio de la transacción
+            se deshacen.
+        </p>
+
+        <pre>
+START TRANSACTION
+      ↓
+Cambios
+      ↓
+ROLLBACK
+      ↓
+DESHACER
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#commit">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#ejemplo">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO
+    ========================== -->
+
+    <section class="bloque" id="ejemplo">
+
+        <h2>6. Ejemplo: transferencia bancaria</h2>
+
+        <p>
+            Imaginemos una transferencia
+            de <span class="clave">$1000</span>
+            desde una cuenta hacia otra.
+        </p>
+
+        <p>
+            Primero debemos restar dinero
+            de una cuenta:
+        </p>
+
+        <pre>
+UPDATE cuentas
+SET saldo = saldo - 1000
+WHERE id = 1;
+        </pre>
+
+        <p>
+            Luego debemos sumarlo
+            a la segunda cuenta:
+        </p>
+
+        <pre>
+UPDATE cuentas
+SET saldo = saldo + 1000
+WHERE id = 2;
+        </pre>
+
+        <p>
+            Lo correcto sería ejecutar
+            ambas operaciones dentro
+            de una transacción:
+        </p>
+
+        <pre>
+START TRANSACTION;
+
+UPDATE cuentas
+SET saldo = saldo - 1000
+WHERE id = 1;
+
+UPDATE cuentas
+SET saldo = saldo + 1000
+WHERE id = 2;
+
+COMMIT;
+        </pre>
+
+        <p>
+            De esta forma,
+            las dos operaciones forman
+            una sola unidad lógica.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Si todo sale bien</h3>
+
+                <pre>
+COMMIT;
+                </pre>
+
+                <p>
+                    Se guardan los cambios.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Si algo falla</h3>
+
+                <pre>
+ROLLBACK;
+                </pre>
+
+                <p>
+                    Se deshacen los cambios.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#rollback">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#autocommit">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         AUTOCOMMIT
+    ========================== -->
+
+    <section class="bloque" id="autocommit">
+
+        <h2>7. AUTOCOMMIT</h2>
+
+        <p>
+            En MySQL normalmente
+            está activo el modo
+            <span class="clave">autocommit</span>.
+        </p>
+
+        <p>
+            Esto significa que una instrucción
+            se confirma automáticamente
+            después de ejecutarse.
+        </p>
+
+        <pre>
+UPDATE alumnos
+SET nombre = 'Ana'
+WHERE id = 1;
+        </pre>
+
+        <p>
+            Si no estamos dentro
+            de una transacción,
+            el cambio puede quedar confirmado
+            automáticamente.
+        </p>
+
+        <p>
+            Con:
+        </p>
+
+        <pre>
+START TRANSACTION;
+        </pre>
+
+        <p>
+            podemos controlar manualmente
+            cuándo guardar o deshacer
+            las operaciones.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#ejemplo">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#errores">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ERRORES
+    ========================== -->
+
+    <section class="bloque" id="errores">
+
+        <h2>8. Errores comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Olvidar COMMIT</h3>
+
+                <p>
+                    Los cambios pueden quedar
+                    sin confirmar.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Olvidar ROLLBACK</h3>
+
+                <p>
+                    Si algo falla,
+                    conviene deshacer
+                    las operaciones pendientes.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Usar operaciones aisladas</h3>
+
+                <p>
+                    Algunas operaciones dependen
+                    unas de otras y deberían
+                    ejecutarse juntas.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Confundir con SAVEPOINT</h3>
+
+                <p>
+                    SAVEPOINT permite marcar
+                    puntos intermedios dentro
+                    de una transacción.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#autocommit">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#cuando-usar">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CUÁNDO USAR
+    ========================== -->
+
+    <section class="bloque" id="cuando-usar">
+
+        <h2>9. ¿Cuándo conviene usar transacciones?</h2>
+
+        <p>
+            Son especialmente útiles
+            cuando varias operaciones
+            dependen entre sí.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>🏦 Transferencias</h3>
+
+                <p>
+                    Restar dinero de una cuenta
+                    y sumarlo en otra.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>🛒 Compras</h3>
+
+                <p>
+                    Crear una venta,
+                    registrar productos
+                    y descontar stock.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>📚 Inscripciones</h3>
+
+                <p>
+                    Registrar al alumno
+                    y asociarlo a un curso.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>🎵 Reproductor</h3>
+
+                <p>
+                    Crear una lista
+                    y agregarle varios temas.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#errores">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO COMPLETO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo completo</h2>
+
+        <pre>
+START TRANSACTION;
+
+INSERT INTO ventas
+(fecha, total)
+VALUES
+(CURDATE(), 2500);
+
+UPDATE productos
+SET stock = stock - 1
+WHERE id = 10;
+
+COMMIT;
+        </pre>
+
+        <p>
+            Si detectamos un problema
+            antes de confirmar:
+        </p>
+
+        <pre>
+ROLLBACK;
+        </pre>
+
+        <p>
+            De esta manera evitamos
+            guardar una operación incompleta.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+START TRANSACTION
+        ↓
+Iniciar
+        ↓
+Ejecutar operaciones
+        ↓
+¿Todo salió bien?
+     ↙        ↘
+   SÍ          NO
+   ↓            ↓
+COMMIT       ROLLBACK
+   ↓            ↓
+Guardar      Deshacer
+        </pre>
+
+        <p>
+            La estructura básica es:
+        </p>
+
+        <pre>
+START TRANSACTION;
+
+-- operaciones SQL
+
+COMMIT;
+        </pre>
+
+        <p>
+            O si ocurre algún problema:
+        </p>
+
+        <pre>
+START TRANSACTION;
+
+-- operaciones SQL
+
+ROLLBACK;
+        </pre>
+
+        <p>
+            Para recordar:
+        </p>
+
+        <pre>
+START TRANSACTION
+       ↓
+INICIAR
+
+
+COMMIT
+       ↓
+GUARDAR
+
+
+ROLLBACK
+       ↓
+DESHACER
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · TCL · START TRANSACTION
+</footer>
+
+</body>
+
+</html>

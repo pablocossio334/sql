@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>REVOKE - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DCL">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="">
+
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        REVOKE
+    </h1>
+
+    <p class="subtitulo">
+        Quitar permisos a usuarios
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué hace REVOKE?
+                </h5>
+            </a>
+
+
+            <a href="#sintaxis" class="tarjeta-indice">
+                <h3>2. Sintaxis</h3>
+                <h5 class="enlacesInternos">
+                    Forma general
+                </h5>
+            </a>
+
+
+            <a href="#select" class="tarjeta-indice">
+                <h3>3. SELECT</h3>
+                <h5 class="enlacesInternos">
+                    Quitar lectura
+                </h5>
+            </a>
+
+
+            <a href="#varios" class="tarjeta-indice">
+                <h3>4. Varios permisos</h3>
+                <h5 class="enlacesInternos">
+                    Quitar varios privilegios
+                </h5>
+            </a>
+
+
+            <a href="#tabla" class="tarjeta-indice">
+                <h3>5. Tabla</h3>
+                <h5 class="enlacesInternos">
+                    Permisos específicos
+                </h5>
+            </a>
+
+
+            <a href="#base" class="tarjeta-indice">
+                <h3>6. Base de datos</h3>
+                <h5 class="enlacesInternos">
+                    Quitar permisos globales
+                </h5>
+            </a>
+
+
+            <a href="#all" class="tarjeta-indice">
+                <h3>7. ALL PRIVILEGES</h3>
+                <h5 class="enlacesInternos">
+                    Quitar todos
+                </h5>
+            </a>
+
+
+            <a href="#grant-revoke" class="tarjeta-indice">
+                <h3>8. GRANT vs REVOKE</h3>
+                <h5 class="enlacesInternos">
+                    Dar y quitar
+                </h5>
+            </a>
+
+
+            <a href="#errores" class="tarjeta-indice">
+                <h3>9. Errores</h3>
+                <h5 class="enlacesInternos">
+                    Problemas comunes
+                </h5>
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace REVOKE?</h2>
+
+        <p>
+            La instrucción <span class="clave">REVOKE</span>
+            permite quitar permisos que habían sido
+            otorgados previamente a un usuario.
+        </p>
+
+        <p>
+            Forma parte de las instrucciones
+            <span class="clave">DCL</span>,
+            porque controla los privilegios
+            y accesos de los usuarios.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis general</h2>
+
+        <pre>
+REVOKE privilegio
+
+ON base.tabla
+
+FROM 'usuario'@'host';
+        </pre>
+
+        <p>
+            La diferencia principal con
+            <span class="clave">GRANT</span>
+            es que usamos
+            <span class="clave">FROM</span>
+            en lugar de
+            <span class="clave">TO</span>.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Privilegio</h3>
+
+                <p>
+                    Qué permiso queremos quitar.
+                </p>
+
+                <pre>
+SELECT
+INSERT
+UPDATE
+DELETE
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Objeto</h3>
+
+                <p>
+                    Sobre qué base o tabla
+                    se aplica.
+                </p>
+
+                <pre>
+escuela.alumnos
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Usuario</h3>
+
+                <p>
+                    A qué usuario
+                    se le quita el permiso.
+                </p>
+
+                <pre>
+'juan'@'localhost'
+                </pre>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#select">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SELECT
+    ========================== -->
+
+    <section class="bloque" id="select">
+
+        <h2>3. Quitar permiso SELECT</h2>
+
+        <p>
+            Podemos quitar el permiso
+            de lectura sobre una tabla.
+        </p>
+
+        <pre>
+REVOKE SELECT
+
+ON escuela.alumnos
+
+FROM 'juan'@'localhost';
+        </pre>
+
+        <p>
+            Después de esto,
+            el usuario
+            <span class="clave">juan</span>
+            ya no podrá consultar
+            esa tabla mediante SELECT.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#varios">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         VARIOS PERMISOS
+    ========================== -->
+
+    <section class="bloque" id="varios">
+
+        <h2>4. Quitar varios permisos</h2>
+
+        <p>
+            Podemos quitar varios privilegios
+            en una sola instrucción.
+        </p>
+
+        <pre>
+REVOKE SELECT, INSERT, UPDATE
+
+ON escuela.alumnos
+
+FROM 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario perderá
+            esos tres permisos
+            sobre la tabla.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>SELECT</h3>
+                <p>Ya no podrá consultar.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>INSERT</h3>
+                <p>Ya no podrá agregar registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>UPDATE</h3>
+                <p>Ya no podrá modificar registros.</p>
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#select">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#tabla">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         TABLA
+    ========================== -->
+
+    <section class="bloque" id="tabla">
+
+        <h2>5. Quitar permisos sobre una tabla</h2>
+
+        <p>
+            Podemos quitar un privilegio
+            solamente sobre una tabla específica.
+        </p>
+
+        <pre>
+REVOKE DELETE
+
+ON escuela.alumnos
+
+FROM 'juan'@'localhost';
+        </pre>
+
+        <p>
+            Esto no afecta necesariamente
+            los permisos que el usuario tenga
+            sobre otras tablas.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#varios">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#base">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BASE DE DATOS
+    ========================== -->
+
+    <section class="bloque" id="base">
+
+        <h2>6. Quitar permisos sobre una base de datos</h2>
+
+        <p>
+            Utilizando
+            <span class="clave">*</span>
+            podemos aplicar REVOKE
+            sobre todas las tablas
+            de una base de datos.
+        </p>
+
+        <pre>
+REVOKE SELECT
+
+ON escuela.*
+
+FROM 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario perderá el permiso
+            SELECT sobre todas las tablas
+            de <span class="clave">escuela</span>.
+        </p>
+
+        <pre>
+escuela.*
+      ↓
+Todas las tablas
+de escuela
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#tabla">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#all">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ALL PRIVILEGES
+    ========================== -->
+
+    <section class="bloque" id="all">
+
+        <h2>7. Quitar ALL PRIVILEGES</h2>
+
+        <p>
+            Podemos quitar todos los privilegios
+            que un usuario tenga sobre
+            un determinado nivel.
+        </p>
+
+        <pre>
+REVOKE ALL PRIVILEGES
+
+ON escuela.*
+
+FROM 'admin'@'localhost';
+        </pre>
+
+        <p>
+            Esto elimina los privilegios
+            sobre la base de datos
+            <span class="clave">escuela</span>
+            para ese usuario.
+        </p>
+
+        <p>
+            <span class="importante">
+                Importante:
+            </span>
+            esto no significa necesariamente
+            que el usuario deje de existir.
+        </p>
+
+        <p>
+            Se están quitando
+            <strong>privilegios</strong>,
+            no eliminando la cuenta.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#base">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#grant-revoke">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         GRANT VS REVOKE
+    ========================== -->
+
+    <section class="bloque" id="grant-revoke">
+
+        <h2>8. GRANT vs REVOKE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>GRANT</h3>
+
+                <p>
+                    Otorga permisos.
+                </p>
+
+                <pre>
+GRANT SELECT
+ON escuela.*
+TO 'juan'@'localhost';
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>REVOKE</h3>
+
+                <p>
+                    Quita permisos.
+                </p>
+
+                <pre>
+REVOKE SELECT
+ON escuela.*
+FROM 'juan'@'localhost';
+                </pre>
+
+            </div>
+
+        </div>
+
+        <p>
+            Una diferencia fácil de recordar:
+        </p>
+
+        <pre>
+GRANT ... TO usuario
+        ↓
+DAR
+
+
+REVOKE ... FROM usuario
+        ↓
+QUITAR
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#all">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#errores">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO PASO A PASO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo paso a paso</h2>
+
+        <p>
+            Primero otorgamos permisos:
+        </p>
+
+        <pre>
+GRANT SELECT, INSERT, UPDATE
+
+ON escuela.alumnos
+
+TO 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario puede:
+        </p>
+
+        <pre>
+SELECT
+INSERT
+UPDATE
+        </pre>
+
+        <p>
+            Después decidimos
+            quitar UPDATE:
+        </p>
+
+        <pre>
+REVOKE UPDATE
+
+ON escuela.alumnos
+
+FROM 'juan'@'localhost';
+        </pre>
+
+        <p>
+            Ahora conserva:
+        </p>
+
+        <pre>
+SELECT
+INSERT
+        </pre>
+
+        <p>
+            pero ya no posee:
+        </p>
+
+        <pre>
+UPDATE
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         USUARIO VS PERMISOS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>REVOKE no elimina al usuario</h2>
+
+        <p>
+            Es importante diferenciar
+            entre quitar permisos
+            y eliminar una cuenta.
+        </p>
+
+        <pre>
+REVOKE
+     ↓
+Quita permisos
+
+
+DROP USER
+     ↓
+Elimina usuario
+        </pre>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+REVOKE SELECT
+
+ON escuela.*
+
+FROM 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario sigue existiendo,
+            pero perdió ese privilegio.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ERRORES
+    ========================== -->
+
+    <section class="bloque" id="errores">
+
+        <h2>9. Errores comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Usuario incorrecto</h3>
+
+                <p>
+                    Es importante indicar
+                    correctamente usuario y host.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Objeto incorrecto</h3>
+
+                <p>
+                    La base o tabla indicada
+                    puede ser incorrecta.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Privilegio incorrecto</h3>
+
+                <p>
+                    Debemos indicar exactamente
+                    qué permiso queremos quitar.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Confundir con DROP USER</h3>
+
+                <p>
+                    REVOKE quita permisos,
+                    no elimina usuarios.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#grant-revoke">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BUENA PRÁCTICA
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Buena práctica</h2>
+
+        <p>
+            Si un usuario deja de necesitar
+            determinado acceso,
+            podemos quitar solamente
+            ese privilegio.
+        </p>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+REVOKE DELETE
+
+ON escuela.*
+
+FROM 'editor'@'localhost';
+        </pre>
+
+        <p>
+            El usuario puede conservar
+            otros privilegios como:
+        </p>
+
+        <pre>
+SELECT
+INSERT
+UPDATE
+        </pre>
+
+        <p>
+            pero ya no podrá eliminar registros.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+REVOKE
+    ↓
+Quitar privilegios
+    ↓
+¿Qué permiso?
+    ↓
+SELECT / INSERT / UPDATE / DELETE
+    ↓
+¿Sobre qué?
+    ↓
+Base / Tabla
+    ↓
+¿A quién se lo quitamos?
+    ↓
+Usuario
+        </pre>
+
+        <p>
+            La estructura principal es:
+        </p>
+
+        <pre>
+REVOKE privilegio
+
+ON base.tabla
+
+FROM 'usuario'@'host';
+        </pre>
+
+        <p>
+            Para recordar DCL:
+        </p>
+
+        <pre>
+GRANT
+   ↓
+DAR permisos
+
+
+REVOKE
+   ↓
+QUITAR permisos
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DCL · REVOKE
+</footer>
+
+</body>
+
+</html>

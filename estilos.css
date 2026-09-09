@@ -1,0 +1,439 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#08080c;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    width:100%;
+    padding:22px;
+    text-align:center;
+    background:#111118;
+    
+   
+
+    border-bottom:2px solid #39ff14;
+    box-shadow:
+        0 0 10px #39ff14,
+        0 0 20px rgba(57,255,20,.4);
+
+   
+    
+
+    
+   
+}
+header img{
+    width: 27rem;
+}
+/* =========================
+   BOTÓN VOLVER
+========================= */
+
+.volver{
+    position:absolute;
+    left:25px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    text-decoration:none;
+
+    color:#00ffff;
+    font-size:2rem;
+
+    transition:.3s;
+
+    text-shadow:0 0 8px #00ffff;
+}
+
+.volver:hover{
+    color:#ff00ff;
+
+    text-shadow:0 0 12px #ff00ff;
+
+    transform:
+        translateY(-50%)
+        translateX(-5px);
+}
+
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+main{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+      animation: aparecerMain .7s ease-out;
+}
+@keyframes aparecerMain{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.titulo{
+    text-align:center;
+
+    margin-top:45px;
+
+    font-size:2.7rem;
+
+    color:#ff00ff;
+
+    text-shadow:
+        0 0 8px #ff00ff,
+        0 0 18px rgba(255,0,255,.7);
+}
+
+.subtitulo{
+    text-align:center;
+
+    margin-top:12px;
+
+    color:#aaa;
+
+    font-size:1rem;
+}
+
+.linea{
+    width:220px;
+    height:3px;
+
+    margin:18px auto 40px;
+
+    background:#00ffff;
+
+    box-shadow:
+        0 0 8px #00ffff,
+        0 0 18px #00ffff;
+}
+
+
+/* =========================
+   DESCRIPCIÓN
+========================= */
+
+.descripcion{
+    background:#15151d;
+
+    border-left:4px solid #39ff14;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    margin-bottom:35px;
+
+    color:#ccc;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   BLOQUES DE CONTENIDO
+========================= */
+
+.bloque{
+    background:#15151d;
+    display:flex;
+    flex-wrap: wrap;
+    border:2px solid #39ff14;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 0 10px rgba(57,255,20,.25);
+}
+
+.bloque h2{
+    color:#39ff14;
+width: 100%;
+    margin-bottom:15px;
+
+    text-shadow:
+        0 0 6px #39ff14;
+}
+
+.bloque p{
+    color:#ccc;
+
+    line-height:1.6;
+width: 100%;
+    margin-top:12px;
+}
+
+
+/* =========================
+   CONTENEDORES GRID
+========================= */
+
+.contenedor{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+    padding-bottom:60px;
+}
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+    margin-top:20px;
+}
+
+
+/* =========================
+   TARJETAS PRINCIPALES
+========================= */
+
+.tarjeta{
+    background:#15151d;
+
+    border:2px solid #39ff14;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    min-height:230px;
+
+    box-shadow:
+        0 0 10px rgba(57,255,20,.3);
+
+    transition:.3s;
+}
+
+.tarjeta:hover{
+    transform:translateY(-6px);
+
+    border-color:#00ffff;
+
+    box-shadow:
+        0 0 15px #00ffff;
+}
+
+.tarjeta h2{
+    color:#39ff14;
+
+    margin-bottom:12px;
+
+    font-size:1.7rem;
+
+    text-shadow:
+        0 0 6px #39ff14;
+}
+
+.tarjeta p{
+    color:#bbb;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+}
+
+
+/* =========================
+   TARJETAS INTERNAS
+========================= */
+
+.tarjeta-info{
+    background:#101018;
+
+    border:1px solid #00ffff;
+
+    border-radius:12px;
+
+    padding:18px;
+}
+
+.tarjeta-info h3{
+    color:#ff00ff;
+
+    margin-bottom:10px;
+}
+
+.tarjeta-info p{
+    color:#ccc;
+
+    font-size:.95rem;
+
+    line-height:1.5;
+}
+.enlacesInternos{
+    color:white;
+}
+
+/* =========================
+   ICONOS
+========================= */
+
+.icono{
+    font-size:2.7rem;
+
+    margin-bottom:15px;
+
+    filter:
+        drop-shadow(0 0 8px #00ffff);
+}
+
+
+/* =========================
+   CÓDIGO
+========================= */
+
+code{
+    display:block;
+
+    background:#09090e;
+
+    color:#00ffff;
+
+    padding:12px;
+
+    border-left:3px solid #ff00ff;
+
+    border-radius:6px;
+
+    font-family:Consolas, monospace;
+
+    font-size:.9rem;
+}
+
+pre{
+    background:#09090e;
+
+    color:#00ffff;
+
+    padding:18px;
+
+    border-left:4px solid #ff00ff;
+
+    border-radius:8px;
+
+    margin-top:18px;
+
+    overflow-x:auto;
+
+    font-family:Consolas, monospace;
+
+    line-height:1.5;
+}
+
+
+/* =========================
+   TEXTO DESTACADO
+========================= */
+
+.clave{
+    color:#39ff14;
+
+    font-family:Consolas, monospace;
+}
+
+.importante{
+    color:#ff00ff;
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+
+    padding:20px;
+
+    color:#666;
+
+    border-top:1px solid #222;
+
+    margin-top:40px;
+}
+/*INDICE*/
+.grid-indice{
+    display:flex;
+ flex-wrap: wrap;
+}
+.tarjeta-indice{
+    background:#101018;
+    border:1px solid #00ffff;
+    border-radius:10px;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding:12px;
+
+    min-height:90px;
+   width: 150px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    transition:all 1s;
+}
+.tarjeta-indice:hover{
+     box-shadow:
+        0 0 8px #21e01e,
+        0 0 18px #15c72d,
+        0 0 30px rgba(21, 236, 9, 0.5);
+   
+}
+.tarjeta-indice h3{
+    font-size:1rem;
+    color:#ff00ff;
+    margin-bottom:6px;
+}
+
+.tarjeta-indice p{
+    margin:0;
+    font-size:.85rem;
+}

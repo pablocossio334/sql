@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DELETE - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DML">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="">
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        DELETE
+    </h1>
+
+    <p class="subtitulo">
+        Eliminar registros de una tabla
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué hace DELETE?
+                </h5>
+            </a>
+
+            <a href="#sintaxis" class="tarjeta-indice">
+                <h3>2. Sintaxis</h3>
+                <h5 class="enlacesInternos">
+                    Forma general
+                </h5>
+            </a>
+
+            <a href="#where" class="tarjeta-indice">
+                <h3>3. WHERE</h3>
+                <h5 class="enlacesInternos">
+                    Elegir registros
+                </h5>
+            </a>
+
+            <a href="#varios" class="tarjeta-indice">
+                <h3>4. Varios registros</h3>
+                <h5 class="enlacesInternos">
+                    Eliminar varias filas
+                </h5>
+            </a>
+
+            <a href="#sin-where" class="tarjeta-indice">
+                <h3>5. Sin WHERE</h3>
+                <h5 class="enlacesInternos">
+                    Eliminar todos
+                </h5>
+            </a>
+
+            <a href="#foreign-key" class="tarjeta-indice">
+                <h3>6. FOREIGN KEY</h3>
+                <h5 class="enlacesInternos">
+                    Relaciones
+                </h5>
+            </a>
+
+            <a href="#comparacion" class="tarjeta-indice">
+                <h3>7. Comparación</h3>
+                <h5 class="enlacesInternos">
+                    DELETE, TRUNCATE y DROP
+                </h5>
+            </a>
+
+            <a href="#buena-practica" class="tarjeta-indice">
+                <h3>8. Buena práctica</h3>
+                <h5 class="enlacesInternos">
+                    Ver antes de borrar
+                </h5>
+            </a>
+
+            <a href="#errores" class="tarjeta-indice">
+                <h3>9. Errores</h3>
+                <h5 class="enlacesInternos">
+                    Problemas comunes
+                </h5>
+            </a>
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace DELETE?</h2>
+
+        <p>
+            La instrucción <span class="clave">DELETE</span>
+            permite eliminar registros existentes
+            dentro de una tabla.
+        </p>
+
+        <p>
+            Forma parte de las instrucciones
+            <span class="clave">DML</span>,
+            porque trabaja directamente con los datos.
+        </p>
+
+        <p>
+            La estructura de la tabla
+            continúa existiendo después del borrado.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis general</h2>
+
+        <pre>
+DELETE FROM nombre_tabla
+
+WHERE condición;
+        </pre>
+
+        <p>
+            <span class="clave">DELETE FROM</span>
+            indica de qué tabla queremos eliminar registros.
+        </p>
+
+        <p>
+            <span class="clave">WHERE</span>
+            indica cuáles registros serán eliminados.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#where">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO BÁSICO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo básico</h2>
+
+        <p>
+            Supongamos que tenemos:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       20
+2           Juan      25
+3           Pedro     18
+        </pre>
+
+        <p>
+            Queremos eliminar a Juan:
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+
+WHERE idAlumno = 2;
+        </pre>
+
+        <p>
+            El resultado sería:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       20
+3           Pedro     18
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         WHERE
+    ========================== -->
+
+    <section class="bloque" id="where">
+
+        <h2>3. DELETE y WHERE</h2>
+
+        <p>
+            La cláusula
+            <span class="clave">WHERE</span>
+            permite controlar qué registros
+            queremos eliminar.
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            En este caso solamente se eliminan
+            los alumnos cuya edad sea menor a 18.
+        </p>
+
+        <p>
+            Podemos utilizar diferentes condiciones:
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+WHERE nombre = 'Ana';
+        </pre>
+
+        <pre>
+DELETE FROM alumnos
+WHERE edad &gt; 30;
+        </pre>
+
+        <pre>
+DELETE FROM alumnos
+WHERE idCurso = 5;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#varios">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         VARIOS REGISTROS
+    ========================== -->
+
+    <section class="bloque" id="varios">
+
+        <h2>4. Eliminar varios registros</h2>
+
+        <p>
+            DELETE puede eliminar más de un registro
+            si varios cumplen la condición.
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+
+WHERE edad &lt; 20;
+        </pre>
+
+        <p>
+            Si tenemos:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       17
+2           Juan      25
+3           Pedro     18
+4           María     30
+        </pre>
+
+        <p>
+            Se eliminarían Ana y Pedro,
+            porque ambos cumplen la condición.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#where">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#sin-where">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SIN WHERE
+    ========================== -->
+
+    <section class="bloque" id="sin-where">
+
+        <h2>5. DELETE sin WHERE</h2>
+
+        <p>
+            Si ejecutamos DELETE
+            sin una condición
+            <span class="clave">WHERE</span>,
+            se eliminan
+            <strong>todos los registros</strong>
+            de la tabla.
+        </p>
+
+        <pre>
+DELETE FROM alumnos;
+        </pre>
+
+        <p>
+            La tabla continúa existiendo,
+            pero queda vacía.
+        </p>
+
+        <pre>
+alumnos
+
+idAlumno
+nombre
+edad
+        </pre>
+
+        <p>
+            <span class="importante">
+                Atención:
+            </span>
+            olvidar WHERE puede provocar
+            el borrado de todos los datos.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#varios">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#foreign-key">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque" id="foreign-key">
+
+        <h2>6. DELETE y FOREIGN KEY</h2>
+
+        <p>
+            Las relaciones entre tablas pueden impedir
+            la eliminación de determinados registros.
+        </p>
+
+        <p>
+            Supongamos:
+        </p>
+
+        <pre>
+cursos
+   ↑
+   |
+alumnos.idCurso
+        </pre>
+
+        <p>
+            Si un curso está siendo utilizado
+            por registros de la tabla
+            <span class="clave">alumnos</span>,
+            MySQL puede impedir eliminar ese curso.
+        </p>
+
+        <pre>
+DELETE FROM cursos
+WHERE idCurso = 2;
+        </pre>
+
+        <p>
+            La operación podría producir un error
+            si existen alumnos relacionados con ese curso.
+        </p>
+
+        <p>
+            Esto protege la
+            <span class="clave">integridad referencial</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#sin-where">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#comparacion">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         TABLA INTERMEDIA
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Eliminar en tablas relacionadas</h2>
+
+        <p>
+            En una relación muchos a muchos,
+            normalmente debemos eliminar primero
+            el registro de la tabla intermedia.
+        </p>
+
+        <pre>
+alumnos
+    ↑
+    |
+alumnos_cursos
+    |
+    ↓
+cursos
+        </pre>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+DELETE FROM alumnos_cursos
+WHERE idAlumno = 5;
+        </pre>
+
+        <p>
+            Después podríamos eliminar al alumno:
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+WHERE idAlumno = 5;
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         COMPARACIÓN
+    ========================== -->
+
+    <section class="bloque" id="comparacion">
+
+        <h2>7. DELETE vs TRUNCATE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>DELETE</h3>
+
+                <p>
+                    Puede eliminar algunos
+                    o todos los registros.
+                </p>
+
+                <pre>
+DELETE FROM alumnos
+WHERE edad &lt; 18;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>TRUNCATE</h3>
+
+                <p>
+                    Elimina siempre todos
+                    los registros.
+                </p>
+
+                <pre>
+TRUNCATE TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>DELETE vs DROP TABLE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>DELETE</h3>
+
+                <p>
+                    Elimina registros
+                    pero mantiene la tabla.
+                </p>
+
+                <pre>
+DELETE FROM alumnos;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP TABLE</h3>
+
+                <p>
+                    Elimina los registros
+                    y también la tabla.
+                </p>
+
+                <pre>
+DROP TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Comparación rápida</h2>
+
+        <pre>
+DELETE
+     ↓
+Elimina registros
+Puede usar WHERE
+Mantiene estructura
+
+
+TRUNCATE
+     ↓
+Elimina TODOS los registros
+No usa WHERE
+Mantiene estructura
+
+
+DROP TABLE
+     ↓
+Elimina registros
++
+Elimina estructura
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#foreign-key">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#buena-practica">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BUENA PRÁCTICA
+    ========================== -->
+
+    <section class="bloque" id="buena-practica">
+
+        <h2>8. Buena práctica antes de DELETE</h2>
+
+        <p>
+            Antes de eliminar registros,
+            es recomendable ejecutar un
+            <span class="clave">SELECT</span>
+            usando la misma condición.
+        </p>
+
+        <p>
+            Primero:
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos
+
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            Verificamos qué registros aparecen.
+        </p>
+
+        <p>
+            Si son los que realmente queremos eliminar,
+            ejecutamos:
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            La idea es:
+        </p>
+
+        <pre>
+SELECT
+   ↓
+Ver qué voy a borrar
+
+DELETE
+   ↓
+Borrarlo
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#comparacion">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#errores">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ERRORES
+    ========================== -->
+
+    <section class="bloque" id="errores">
+
+        <h2>9. Errores comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Olvidar WHERE</h3>
+
+                <p>
+                    Puede eliminar todos
+                    los registros de la tabla.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Condición incorrecta</h3>
+
+                <p>
+                    Puede eliminar registros
+                    que no queríamos borrar.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>FOREIGN KEY</h3>
+
+                <p>
+                    Puede impedir eliminar
+                    registros relacionados.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tabla equivocada</h3>
+
+                <p>
+                    Debemos comprobar siempre
+                    el nombre de la tabla.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#buena-practica">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO COMPLETO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo paso a paso</h2>
+
+        <p>
+            Tenemos:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       17
+2           Juan      25
+3           Pedro     18
+4           María     30
+        </pre>
+
+        <p>
+            Primero verificamos:
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos
+
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            Obtenemos:
+        </p>
+
+        <pre>
+1    Ana    17
+        </pre>
+
+        <p>
+            Entonces eliminamos:
+        </p>
+
+        <pre>
+DELETE FROM alumnos
+
+WHERE edad &lt; 18;
+        </pre>
+
+        <p>
+            Resultado:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+2           Juan      25
+3           Pedro     18
+4           María     30
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+DELETE FROM tabla
+        ↓
+Eliminar registros
+
+
+WHERE
+        ↓
+Elegir qué registros
+eliminar
+        </pre>
+
+        <p>
+            La estructura principal es:
+        </p>
+
+        <pre>
+DELETE FROM tabla
+
+WHERE condición;
+        </pre>
+
+        <p>
+            Una forma sencilla de recordar DML:
+        </p>
+
+        <pre>
+INSERT
+   ↓
+Agregar
+
+
+UPDATE
+   ↓
+Modificar
+
+
+DELETE
+   ↓
+Eliminar
+        </pre>
+
+        <p>
+            Y una regla importante:
+        </p>
+
+        <pre>
+DELETE + WHERE
+      ↓
+Eliminar algunos
+
+
+DELETE sin WHERE
+      ↓
+Eliminar TODOS
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DML · DELETE
+</footer>
+
+</body>
+
+</html>

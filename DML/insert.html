@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSERT - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DML">
+        ←
+    </a>
+
+   <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        INSERT
+    </h1>
+
+    <p class="subtitulo">
+        Agregar registros a una tabla
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué hace INSERT?
+                </h5>
+            </a>
+
+
+            <a href="#sintaxis" class="tarjeta-indice">
+                <h3>2. Sintaxis</h3>
+                <h5 class="enlacesInternos">
+                    Forma general
+                </h5>
+            </a>
+
+
+            <a href="#columnas" class="tarjeta-indice">
+                <h3>3. Columnas</h3>
+                <h5 class="enlacesInternos">
+                    Indicar campos
+                </h5>
+            </a>
+
+
+            <a href="#sin-columnas" class="tarjeta-indice">
+                <h3>4. Sin columnas</h3>
+                <h5 class="enlacesInternos">
+                    Insertar todos los valores
+                </h5>
+            </a>
+
+
+            <a href="#varios" class="tarjeta-indice">
+                <h3>5. Varios registros</h3>
+                <h5 class="enlacesInternos">
+                    Insertar múltiples filas
+                </h5>
+            </a>
+
+
+            <a href="#autoincrement" class="tarjeta-indice">
+                <h3>6. AUTO_INCREMENT</h3>
+                <h5 class="enlacesInternos">
+                    ID automático
+                </h5>
+            </a>
+
+
+            <a href="#null-default" class="tarjeta-indice">
+                <h3>7. NULL / DEFAULT</h3>
+                <h5 class="enlacesInternos">
+                    Valores especiales
+                </h5>
+            </a>
+
+
+            <a href="#foreign-key" class="tarjeta-indice">
+                <h3>8. FOREIGN KEY</h3>
+                <h5 class="enlacesInternos">
+                    Insertar relaciones
+                </h5>
+            </a>
+
+
+            <a href="#errores" class="tarjeta-indice">
+                <h3>9. Errores</h3>
+                <h5 class="enlacesInternos">
+                    Problemas comunes
+                </h5>
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace INSERT?</h2>
+
+        <p>
+            La instrucción <span class="clave">INSERT INTO</span>
+            permite agregar nuevos registros
+            dentro de una tabla.
+        </p>
+
+        <p>
+            Forma parte de las instrucciones
+            <span class="clave">DML</span>,
+            porque trabaja directamente con los datos.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis general</h2>
+
+        <pre>
+INSERT INTO nombre_tabla
+(columna1, columna2, columna3)
+
+VALUES
+(valor1, valor2, valor3);
+        </pre>
+
+        <p>
+            Cada valor debe corresponder
+            con la columna ubicada en la misma posición.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#columnas">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo básico</h2>
+
+        <p>
+            Supongamos que tenemos la tabla:
+        </p>
+
+        <pre>
+alumnos
+
+idAlumno
+nombre
+edad
+        </pre>
+
+        <p>
+            Podemos insertar un alumno:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad)
+
+VALUES
+('Ana', 20);
+        </pre>
+
+        <p>
+            El nuevo registro podría quedar:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       20
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         COLUMNAS
+    ========================== -->
+
+    <section class="bloque" id="columnas">
+
+        <h2>3. Indicar las columnas</h2>
+
+        <p>
+            Una forma recomendada de utilizar
+            <span class="clave">INSERT</span>
+            es indicar explícitamente las columnas.
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad)
+
+VALUES
+('Juan', 25);
+        </pre>
+
+        <p>
+            Esto deja claro qué valor
+            corresponde a cada columna.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>nombre</h3>
+
+                <p>
+                    Recibe el valor
+                    <span class="clave">'Juan'</span>.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>edad</h3>
+
+                <p>
+                    Recibe el valor
+                    <span class="clave">25</span>.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#sin-columnas">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SIN COLUMNAS
+    ========================== -->
+
+    <section class="bloque" id="sin-columnas">
+
+        <h2>4. INSERT sin indicar columnas</h2>
+
+        <p>
+            También es posible insertar valores
+            sin escribir los nombres de las columnas.
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+
+VALUES
+(1, 'Ana', 20);
+        </pre>
+
+        <p>
+            En este caso debemos indicar
+            <strong>todos los valores</strong>
+            en el mismo orden en que están definidas
+            las columnas de la tabla.
+        </p>
+
+        <p>
+            Por eso suele ser más claro utilizar:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad)
+
+VALUES
+('Ana', 20);
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#columnas">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#varios">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         VARIOS REGISTROS
+    ========================== -->
+
+    <section class="bloque" id="varios">
+
+        <h2>5. Insertar varios registros</h2>
+
+        <p>
+            Podemos agregar varios registros
+            con una sola instrucción.
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad)
+
+VALUES
+('Ana', 20),
+('Juan', 25),
+('Pedro', 18);
+        </pre>
+
+        <p>
+            En este caso se agregan
+            tres registros a la tabla.
+        </p>
+
+        <pre>
+nombre    edad
+--------------
+Ana       20
+Juan      25
+Pedro     18
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#sin-columnas">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#autoincrement">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         AUTO_INCREMENT
+    ========================== -->
+
+    <section class="bloque" id="autoincrement">
+
+        <h2>6. INSERT y AUTO_INCREMENT</h2>
+
+        <p>
+            Si una columna está definida como
+            <span class="clave">AUTO_INCREMENT</span>,
+            normalmente no necesitamos indicar su valor.
+        </p>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    idAlumno INT
+    PRIMARY KEY
+    AUTO_INCREMENT,
+
+    nombre VARCHAR(100),
+
+    edad INT
+
+);
+        </pre>
+
+        <p>
+            Entonces insertamos:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad)
+
+VALUES
+('Ana', 20);
+        </pre>
+
+        <p>
+            MySQL genera automáticamente
+            el valor de
+            <span class="clave">idAlumno</span>.
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       20
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#varios">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#null-default">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         NULL Y DEFAULT
+    ========================== -->
+
+    <section class="bloque" id="null-default">
+
+        <h2>7. NULL y DEFAULT</h2>
+
+        <p>
+            Algunas columnas pueden aceptar
+            <span class="clave">NULL</span>
+            o tener un valor
+            <span class="clave">DEFAULT</span>.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>NULL</h3>
+
+                <p>
+                    Indica ausencia de valor.
+                </p>
+
+                <pre>
+INSERT INTO alumnos
+(nombre, edad)
+
+VALUES
+('Ana', NULL);
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DEFAULT</h3>
+
+                <p>
+                    Utiliza el valor predeterminado
+                    definido para la columna.
+                </p>
+
+                <pre>
+INSERT INTO usuarios
+(nombre, activo)
+
+VALUES
+('Ana', DEFAULT);
+                </pre>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#autoincrement">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#foreign-key">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque" id="foreign-key">
+
+        <h2>8. INSERT y FOREIGN KEY</h2>
+
+        <p>
+            Si una columna es una
+            <span class="clave">FOREIGN KEY</span>,
+            el valor que insertamos debe existir
+            en la tabla relacionada.
+        </p>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+cursos
+
+idCurso    nombre
+-----------------
+1          Java
+2          SQL
+        </pre>
+
+        <p>
+            Podemos insertar un alumno
+            relacionado con el curso 2:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, idCurso)
+
+VALUES
+('Ana', 2);
+        </pre>
+
+        <p>
+            Esto funciona porque
+            <span class="clave">idCurso = 2</span>
+            existe en la tabla
+            <span class="clave">cursos</span>.
+        </p>
+
+        <p>
+            Pero:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, idCurso)
+
+VALUES
+('Pedro', 99);
+        </pre>
+
+        <p>
+            puede producir un error si el curso
+            <span class="clave">99</span>
+            no existe.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#null-default">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#errores">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ERRORES COMUNES
+    ========================== -->
+
+    <section class="bloque" id="errores">
+
+        <h2>9. Errores comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Orden incorrecto</h3>
+
+                <p>
+                    Los valores no coinciden
+                    con las columnas.
+                </p>
+
+                <pre>
+(nombre, edad)
+
+VALUES
+(20, 'Ana');
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>NOT NULL</h3>
+
+                <p>
+                    Falta un valor obligatorio.
+                </p>
+
+                <pre>
+nombre VARCHAR(100)
+NOT NULL
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>UNIQUE</h3>
+
+                <p>
+                    Se intenta insertar
+                    un valor que ya existe.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>FOREIGN KEY</h3>
+
+                <p>
+                    Se intenta relacionar
+                    con un registro inexistente.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#foreign-key">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO COMPLETO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo completo</h2>
+
+        <p>
+            Primero tenemos:
+        </p>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    idAlumno INT
+    PRIMARY KEY
+    AUTO_INCREMENT,
+
+    nombre VARCHAR(100)
+    NOT NULL,
+
+    edad INT,
+
+    email VARCHAR(100)
+    UNIQUE
+
+);
+        </pre>
+
+        <p>
+            Insertamos un registro:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad, email)
+
+VALUES
+(
+    'Ana',
+    20,
+    'ana@email.com'
+);
+        </pre>
+
+        <p>
+            Luego otro:
+        </p>
+
+        <pre>
+INSERT INTO alumnos
+(nombre, edad, email)
+
+VALUES
+(
+    'Juan',
+    25,
+    'juan@email.com'
+);
+        </pre>
+
+        <p>
+            La tabla podría quedar:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad    email
+------------------------------------------
+1           Ana       20      ana@email.com
+2           Juan      25      juan@email.com
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+INSERT INTO
+      ↓
+Agregar registros
+      ↓
+Indicar columnas
+      ↓
+Indicar valores
+        </pre>
+
+        <p>
+            La estructura básica es:
+        </p>
+
+        <pre>
+INSERT INTO tabla
+(columnas)
+
+VALUES
+(valores);
+        </pre>
+
+        <p>
+            Una forma sencilla de recordarlo:
+        </p>
+
+        <pre>
+CREATE TABLE
+     ↓
+Crear estructura
+
+
+INSERT INTO
+     ↓
+Agregar datos
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DML · INSERT
+</footer>
+
+</body>
+
+</html>

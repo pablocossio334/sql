@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DCL - Instrucciones SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <a class="volver" href="../index.html" title="Volver al inicio">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="">
+
+</header>
+
+<main>
+
+    <h1 class="titulo">
+        Instrucciones DCL
+    </h1>
+
+    <p class="subtitulo">
+        Data Control Language
+    </p>
+
+    <div class="linea"></div>
+
+    <div class="descripcion">
+        <strong>DCL</strong> agrupa las instrucciones SQL
+        utilizadas para controlar los permisos y privilegios
+        de los usuarios dentro de una base de datos.
+    </div>
+
+    <section class="contenedor">
+
+        <a href="grant.html" class="tarjeta">
+
+            <div class="icono">🔓</div>
+
+            <h2>GRANT</h2>
+
+            <p>
+                Permite otorgar permisos a uno o más usuarios
+                para realizar determinadas operaciones
+                sobre una base de datos.
+            </p>
+
+            <code>
+                GRANT SELECT, INSERT<br>
+                ON escuela.*<br>
+                TO 'usuario'@'localhost';
+            </code>
+
+        </a>
+
+
+        <a href="revoke.html" class="tarjeta">
+
+            <div class="icono">🔒</div>
+
+            <h2>REVOKE</h2>
+
+            <p>
+                Permite quitar permisos que habían sido
+                otorgados previamente a un usuario.
+            </p>
+
+            <code>
+                REVOKE INSERT<br>
+                ON escuela.*<br>
+                FROM 'usuario'@'localhost';
+            </code>
+
+        </a>
+
+    </section>
+
+</main>
+
+<footer>
+    pablocossio.net · SQL · DCL
+</footer>
+
+</body>
+
+</html>

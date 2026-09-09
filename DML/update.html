@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UPDATE - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DML">
+        ←
+    </a>
+
+   <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        UPDATE
+    </h1>
+
+    <p class="subtitulo">
+        Modificar registros existentes
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué hace UPDATE?
+                </h5>
+            </a>
+
+            <a href="#sintaxis" class="tarjeta-indice">
+                <h3>2. Sintaxis</h3>
+                <h5 class="enlacesInternos">
+                    Forma general
+                </h5>
+            </a>
+
+            <a href="#where" class="tarjeta-indice">
+                <h3>3. WHERE</h3>
+                <h5 class="enlacesInternos">
+                    Elegir registros
+                </h5>
+            </a>
+
+            <a href="#varias-columnas" class="tarjeta-indice">
+                <h3>4. Varias columnas</h3>
+                <h5 class="enlacesInternos">
+                    Modificar más de un campo
+                </h5>
+            </a>
+
+            <a href="#todos" class="tarjeta-indice">
+                <h3>5. Todos los registros</h3>
+                <h5 class="enlacesInternos">
+                    UPDATE sin WHERE
+                </h5>
+            </a>
+
+            <a href="#operaciones" class="tarjeta-indice">
+                <h3>6. Operaciones</h3>
+                <h5 class="enlacesInternos">
+                    Calcular nuevos valores
+                </h5>
+            </a>
+
+            <a href="#null" class="tarjeta-indice">
+                <h3>7. NULL</h3>
+                <h5 class="enlacesInternos">
+                    Vaciar un valor
+                </h5>
+            </a>
+
+            <a href="#restricciones" class="tarjeta-indice">
+                <h3>8. Restricciones</h3>
+                <h5 class="enlacesInternos">
+                    UNIQUE y FOREIGN KEY
+                </h5>
+            </a>
+
+            <a href="#errores" class="tarjeta-indice">
+                <h3>9. Errores</h3>
+                <h5 class="enlacesInternos">
+                    Problemas comunes
+                </h5>
+            </a>
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace UPDATE?</h2>
+
+        <p>
+            La instrucción <span class="clave">UPDATE</span>
+            permite modificar datos que ya existen
+            dentro de una tabla.
+        </p>
+
+        <p>
+            Forma parte de las instrucciones
+            <span class="clave">DML</span>,
+            porque trabaja directamente
+            con los registros almacenados.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis general</h2>
+
+        <pre>
+UPDATE nombre_tabla
+
+SET columna = nuevo_valor
+
+WHERE condición;
+        </pre>
+
+        <p>
+            <span class="clave">SET</span>
+            indica qué columna queremos modificar.
+        </p>
+
+        <p>
+            <span class="clave">WHERE</span>
+            indica qué registros serán modificados.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#where">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo básico</h2>
+
+        <p>
+            Supongamos que tenemos:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       20
+2           Juan      25
+3           Pedro     18
+        </pre>
+
+        <p>
+            Queremos cambiar la edad de Ana:
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET edad = 21
+
+WHERE idAlumno = 1;
+        </pre>
+
+        <p>
+            La tabla quedaría:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       21
+2           Juan      25
+3           Pedro     18
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         WHERE
+    ========================== -->
+
+    <section class="bloque" id="where">
+
+        <h2>3. UPDATE y WHERE</h2>
+
+        <p>
+            La cláusula
+            <span class="clave">WHERE</span>
+            permite elegir qué registros
+            serán modificados.
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET edad = 30
+
+WHERE idAlumno = 2;
+        </pre>
+
+        <p>
+            Solamente se modifica
+            el registro cuyo
+            <span class="clave">idAlumno = 2</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#varias-columnas">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         VARIAS COLUMNAS
+    ========================== -->
+
+    <section class="bloque" id="varias-columnas">
+
+        <h2>4. Modificar varias columnas</h2>
+
+        <p>
+            Podemos cambiar varias columnas
+            en una misma instrucción.
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET
+    nombre = 'Ana Pérez',
+    edad = 22
+
+WHERE idAlumno = 1;
+        </pre>
+
+        <p>
+            En este caso se modifica
+            el nombre y la edad
+            del mismo registro.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#where">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#todos">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SIN WHERE
+    ========================== -->
+
+    <section class="bloque" id="todos">
+
+        <h2>5. UPDATE sin WHERE</h2>
+
+        <p>
+            Si no utilizamos
+            <span class="clave">WHERE</span>,
+            se modifican
+            <strong>todos los registros</strong>
+            de la tabla.
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET activo = TRUE;
+        </pre>
+
+        <p>
+            Esto asignará
+            <span class="clave">TRUE</span>
+            a la columna
+            <span class="clave">activo</span>
+            de todos los alumnos.
+        </p>
+
+        <p>
+            <span class="importante">
+                Atención:
+            </span>
+            olvidar WHERE puede modificar
+            todos los registros sin querer.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#varias-columnas">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#operaciones">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         OPERACIONES
+    ========================== -->
+
+    <section class="bloque" id="operaciones">
+
+        <h2>6. UPDATE con operaciones</h2>
+
+        <p>
+            El nuevo valor puede calcularse
+            utilizando el valor anterior.
+        </p>
+
+        <pre>
+UPDATE productos
+
+SET precio = precio + 100;
+        </pre>
+
+        <p>
+            Todos los precios aumentan
+            en <span class="clave">100</span>.
+        </p>
+
+        <p>
+            También podemos usar multiplicaciones:
+        </p>
+
+        <pre>
+UPDATE productos
+
+SET precio = precio * 1.10;
+        </pre>
+
+        <p>
+            Esto aumenta todos los precios
+            un 10%.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#todos">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#null">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         NULL
+    ========================== -->
+
+    <section class="bloque" id="null">
+
+        <h2>7. Asignar NULL</h2>
+
+        <p>
+            Si la columna permite valores
+            <span class="clave">NULL</span>,
+            podemos eliminar su valor actual.
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET telefono = NULL
+
+WHERE idAlumno = 3;
+        </pre>
+
+        <p>
+            Esto no elimina el registro.
+            Solamente deja la columna
+            <span class="clave">telefono</span>
+            sin valor.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#operaciones">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#restricciones">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESTRICCIONES
+    ========================== -->
+
+    <section class="bloque" id="restricciones">
+
+        <h2>8. UPDATE y restricciones</h2>
+
+        <p>
+            Los nuevos valores deben respetar
+            las restricciones definidas
+            en la tabla.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>NOT NULL</h3>
+
+                <p>
+                    No podemos asignar NULL
+                    si la columna lo prohíbe.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>UNIQUE</h3>
+
+                <p>
+                    No podemos repetir
+                    un valor que debe ser único.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>FOREIGN KEY</h3>
+
+                <p>
+                    El nuevo valor debe existir
+                    en la tabla relacionada.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tipo de dato</h3>
+
+                <p>
+                    El nuevo valor debe ser compatible
+                    con el tipo de la columna.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#null">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#errores">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo con FOREIGN KEY</h2>
+
+        <p>
+            Supongamos que un alumno
+            pertenece al curso 1:
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET idCurso = 2
+
+WHERE idAlumno = 5;
+        </pre>
+
+        <p>
+            Esto funcionará solamente
+            si existe un curso con
+            <span class="clave">idCurso = 2</span>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ERRORES
+    ========================== -->
+
+    <section class="bloque" id="errores">
+
+        <h2>9. Errores comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Olvidar WHERE</h3>
+
+                <p>
+                    Puede modificar
+                    todos los registros.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>UNIQUE</h3>
+
+                <p>
+                    Intentar repetir
+                    un valor único.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>FOREIGN KEY</h3>
+
+                <p>
+                    Asignar un valor
+                    que no existe en la tabla relacionada.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tipo incorrecto</h3>
+
+                <p>
+                    Intentar guardar un valor
+                    incompatible con la columna.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#restricciones">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BUENA PRÁCTICA
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Buena práctica antes de UPDATE</h2>
+
+        <p>
+            Antes de modificar registros,
+            podemos realizar un
+            <span class="clave">SELECT</span>
+            usando la misma condición.
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos
+
+WHERE idAlumno = 5;
+        </pre>
+
+        <p>
+            Si el registro mostrado
+            es el que queremos modificar,
+            entonces ejecutamos:
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET edad = 24
+
+WHERE idAlumno = 5;
+        </pre>
+
+        <p>
+            Esto ayuda a evitar
+            modificar registros incorrectos.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO COMPLETO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplo paso a paso</h2>
+
+        <p>
+            Tenemos:
+        </p>
+
+        <pre>
+idAlumno    nombre    edad
+--------------------------
+1           Ana       20
+2           Juan      25
+3           Pedro     18
+        </pre>
+
+        <p>
+            Cambiamos la edad de Ana:
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET edad = 21
+
+WHERE idAlumno = 1;
+        </pre>
+
+        <p>
+            Cambiamos nombre y edad de Juan:
+        </p>
+
+        <pre>
+UPDATE alumnos
+
+SET
+    nombre = 'Juan Pérez',
+    edad = 26
+
+WHERE idAlumno = 2;
+        </pre>
+
+        <p>
+            Resultado:
+        </p>
+
+        <pre>
+idAlumno    nombre         edad
+-------------------------------
+1           Ana            21
+2           Juan Pérez     26
+3           Pedro          18
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+UPDATE tabla
+      ↓
+Modificar registros
+
+
+SET
+      ↓
+Qué quiero cambiar
+
+
+WHERE
+      ↓
+Qué registros quiero cambiar
+        </pre>
+
+        <p>
+            La estructura más importante es:
+        </p>
+
+        <pre>
+UPDATE tabla
+
+SET columna = valor
+
+WHERE condición;
+        </pre>
+
+        <p>
+            Una forma sencilla de recordar DML:
+        </p>
+
+        <pre>
+INSERT
+   ↓
+Agregar
+
+
+UPDATE
+   ↓
+Modificar
+
+
+DELETE
+   ↓
+Eliminar
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DML · UPDATE
+</footer>
+
+</body>
+
+</html>

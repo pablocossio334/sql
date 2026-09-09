@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DROP - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DDL">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        DROP
+    </h1>
+
+    <p class="subtitulo">
+        Eliminar tablas y bases de datos en SQL
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#drop-table" class="tarjeta-indice">
+                <h3>1. DROP TABLE</h3>
+                <h5 class="enlacesInternos">
+                    Eliminar una tabla
+                </h5>
+            </a>
+
+
+            <a href="#if-exists" class="tarjeta-indice">
+                <h3>2. IF EXISTS</h3>
+                <h5 class="enlacesInternos">
+                    Evitar errores
+                </h5>
+            </a>
+
+
+            <a href="#varias-tablas" class="tarjeta-indice">
+                <h3>3. Varias tablas</h3>
+                <h5 class="enlacesInternos">
+                    Eliminar más de una
+                </h5>
+            </a>
+
+
+            <a href="#foreign-key" class="tarjeta-indice">
+                <h3>4. FOREIGN KEY</h3>
+                <h5 class="enlacesInternos">
+                    Tablas relacionadas
+                </h5>
+            </a>
+
+
+            <a href="#comparacion" class="tarjeta-indice">
+                <h3>5. Comparación</h3>
+                <h5 class="enlacesInternos">
+                    DROP, DELETE y TRUNCATE
+                </h5>
+            </a>
+
+
+            <a href="#drop-database" class="tarjeta-indice">
+                <h3>6. DROP DATABASE</h3>
+                <h5 class="enlacesInternos">
+                    Eliminar una base de datos
+                </h5>
+            </a>
+
+
+            <a href="#atencion" class="tarjeta-indice">
+                <h3>7. Atención</h3>
+                <h5 class="enlacesInternos">
+                    Operaciones destructivas
+                </h5>
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>8. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DROP TABLE
+    ========================== -->
+
+    <section class="bloque" id="drop-table">
+
+        <h2>1. ¿Qué hace DROP TABLE?</h2>
+
+        <p>
+            La instrucción <span class="clave">DROP TABLE</span>
+            elimina completamente una tabla de la base de datos.
+        </p>
+
+        <p>
+            Se elimina tanto la
+            <span class="importante">estructura</span>
+            como todos los
+            <span class="importante">datos almacenados</span>
+            dentro de ella.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+            |
+            <a class="enlacesInternos" href="#if-exists">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Sintaxis general</h2>
+
+        <pre>
+DROP TABLE nombre_tabla;
+        </pre>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Ejemplo básico</h2>
+
+        <pre>
+DROP TABLE alumnos;
+        </pre>
+
+        <p>
+            Este comando elimina completamente
+            la tabla <span class="clave">alumnos</span>.
+        </p>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>¿Qué se elimina?</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>Columnas</h3>
+
+                <p>
+                    Se elimina toda la estructura
+                    de columnas de la tabla.
+                </p>
+            </div>
+
+
+            <div class="tarjeta">
+                <h3>Registros</h3>
+
+                <p>
+                    Se eliminan todos los datos
+                    almacenados.
+                </p>
+            </div>
+
+
+            <div class="tarjeta">
+                <h3>Restricciones</h3>
+
+                <p>
+                    Se eliminan PRIMARY KEY,
+                    UNIQUE y otras restricciones
+                    propias de la tabla.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         IF EXISTS
+    ========================== -->
+
+    <section class="bloque" id="if-exists">
+
+        <h2>2. DROP TABLE IF EXISTS</h2>
+
+        <p>
+            Podemos agregar
+            <span class="clave">IF EXISTS</span>
+            para evitar un error si la tabla no existe.
+        </p>
+
+        <pre>
+DROP TABLE IF EXISTS alumnos;
+        </pre>
+
+        <p>
+            Si la tabla existe, se elimina.
+            Si no existe, MySQL continúa sin producir
+            el error normal de tabla inexistente.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#drop-table">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#varias-tablas">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         VARIAS TABLAS
+    ========================== -->
+
+    <section class="bloque" id="varias-tablas">
+
+        <h2>3. Eliminar varias tablas</h2>
+
+        <p>
+            En MySQL y MariaDB podemos eliminar
+            varias tablas en una misma instrucción.
+        </p>
+
+        <pre>
+DROP TABLE alumnos, cursos, docentes;
+        </pre>
+
+        <p>
+            También podemos combinarlo con
+            <span class="clave">IF EXISTS</span>.
+        </p>
+
+        <pre>
+DROP TABLE IF EXISTS
+alumnos,
+cursos,
+docentes;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#if-exists">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#foreign-key">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque" id="foreign-key">
+
+        <h2>4. DROP TABLE y claves foráneas</h2>
+
+        <p>
+            Si otra tabla tiene una
+            <span class="clave">FOREIGN KEY</span>
+            que referencia a la tabla que queremos eliminar,
+            el gestor puede impedir la operación.
+        </p>
+
+        <pre>
+cursos
+   ↑
+   |
+alumnos.idCurso
+        </pre>
+
+        <p>
+            Por ejemplo, si
+            <span class="clave">alumnos.idCurso</span>
+            referencia a
+            <span class="clave">cursos.idCurso</span>,
+            puede no ser posible eliminar
+            <span class="clave">cursos</span>
+            mientras exista esa relación.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#varias-tablas">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#orden">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <section class="bloque" id="orden">
+
+        <h2>Orden correcto al eliminar tablas relacionadas</h2>
+
+        <p>
+            Generalmente debemos eliminar primero
+            las tablas que contienen las claves foráneas.
+        </p>
+
+        <pre>
+DROP TABLE alumnos;
+
+DROP TABLE cursos;
+        </pre>
+
+        <p>
+            Primero eliminamos la tabla dependiente
+            y después la tabla principal.
+        </p>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Tabla intermedia</h2>
+
+        <p>
+            En una relación muchos a muchos,
+            normalmente eliminamos primero
+            la tabla intermedia.
+        </p>
+
+        <pre>
+alumnos
+    ↑
+    |
+alumnos_cursos
+    |
+    ↓
+cursos
+        </pre>
+
+        <p>
+            El orden podría ser:
+        </p>
+
+        <pre>
+DROP TABLE alumnos_cursos;
+
+DROP TABLE alumnos;
+
+DROP TABLE cursos;
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         COMPARACIÓN
+    ========================== -->
+
+    <section class="bloque" id="comparacion">
+
+        <h2>5. DROP TABLE vs DELETE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>DELETE</h3>
+
+                <p>
+                    Elimina registros,
+                    pero conserva la tabla.
+                </p>
+
+                <pre>
+DELETE FROM alumnos;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP TABLE</h3>
+
+                <p>
+                    Elimina los registros
+                    y también la estructura.
+                </p>
+
+                <pre>
+DROP TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>DROP TABLE vs TRUNCATE TABLE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>TRUNCATE</h3>
+
+                <p>
+                    Vacía todos los registros,
+                    pero mantiene la tabla.
+                </p>
+
+                <pre>
+TRUNCATE TABLE alumnos;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP</h3>
+
+                <p>
+                    Elimina completamente
+                    la tabla.
+                </p>
+
+                <pre>
+DROP TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Comparación rápida</h2>
+
+        <pre>
+DELETE
+   ↓
+Elimina registros
+Mantiene estructura
+
+
+TRUNCATE
+   ↓
+Elimina todos los registros
+Mantiene estructura
+
+
+DROP TABLE
+   ↓
+Elimina registros
++
+Elimina estructura
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DROP DATABASE
+    ========================== -->
+
+    <section class="bloque" id="drop-database">
+
+        <h2>6. DROP DATABASE</h2>
+
+        <p>
+            La instrucción
+            <span class="clave">DROP DATABASE</span>
+            elimina completamente una base de datos.
+        </p>
+
+        <p>
+            Esto significa que se eliminan
+            <span class="importante">
+                todas las tablas, datos y estructuras
+            </span>
+            que contiene.
+        </p>
+
+        <pre>
+DROP DATABASE escuela;
+        </pre>
+
+        <p>
+            En este ejemplo se elimina completamente
+            la base de datos
+            <span class="clave">escuela</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#comparacion">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#drop-database-exists">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <section class="bloque" id="drop-database-exists">
+
+        <h2>DROP DATABASE IF EXISTS</h2>
+
+        <p>
+            También podemos utilizar
+            <span class="clave">IF EXISTS</span>
+            para evitar un error si la base de datos
+            no existe.
+        </p>
+
+        <pre>
+DROP DATABASE IF EXISTS escuela;
+        </pre>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>¿Qué elimina DROP DATABASE?</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Base de datos</h3>
+
+                <p>
+                    Elimina la base de datos
+                    del servidor.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tablas</h3>
+
+                <p>
+                    Se eliminan todas las tablas
+                    contenidas dentro de ella.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Datos</h3>
+
+                <p>
+                    Se eliminan todos los registros
+                    almacenados en esas tablas.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Estructura</h3>
+
+                <p>
+                    También desaparecen columnas,
+                    claves y relaciones.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>DROP TABLE vs DROP DATABASE</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>DROP TABLE</h3>
+
+                <p>
+                    Elimina solamente
+                    una tabla.
+                </p>
+
+                <pre>
+DROP TABLE alumnos;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP DATABASE</h3>
+
+                <p>
+                    Elimina toda la base de datos
+                    con todas sus tablas.
+                </p>
+
+                <pre>
+DROP DATABASE escuela;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Ejemplo</h2>
+
+        <p>
+            Supongamos que tenemos:
+        </p>
+
+        <pre>
+escuela
+   |
+   ├── alumnos
+   ├── cursos
+   ├── docentes
+   └── inscripciones
+        </pre>
+
+        <p>
+            Si ejecutamos:
+        </p>
+
+        <pre>
+DROP DATABASE escuela;
+        </pre>
+
+        <p>
+            desaparecerá toda la base de datos
+            junto con todas esas tablas.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ATENCIÓN
+    ========================== -->
+
+    <section class="bloque" id="atencion">
+
+        <h2>7. ⚠️ Atención</h2>
+
+        <p>
+            Tanto
+            <span class="clave">DROP TABLE</span>
+            como
+            <span class="clave">DROP DATABASE</span>
+            son operaciones destructivas.
+        </p>
+
+        <p>
+            Antes de ejecutarlas debemos comprobar
+            que realmente queremos eliminar
+            esos objetos y sus datos.
+        </p>
+
+        <pre>
+DROP TABLE
+     ↓
+Elimina una tabla
+
+
+DROP DATABASE
+     ↓
+Elimina toda una base de datos
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+            |
+            <a class="enlacesInternos" href="#resumen">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>8. Idea clave</h2>
+
+        <pre>
+DROP TABLE alumnos;
+        ↓
+Eliminar una tabla
+        ↓
+Estructura + datos
+
+
+DROP DATABASE escuela;
+        ↓
+Eliminar base de datos
+        ↓
+Todas las tablas
++
+Todos los datos
++
+Toda la estructura
+        </pre>
+
+        <p>
+            Si solamente queremos borrar registros
+            pero conservar la estructura,
+            debemos utilizar
+            <span class="clave">DELETE</span>
+            o
+            <span class="clave">TRUNCATE</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DDL · DROP
+</footer>
+
+</body>
+
+</html>

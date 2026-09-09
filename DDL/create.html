@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CREATE DATABASE y CREATE TABLE - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DDL">
+        ←
+    </a>
+
+   <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        CREATE DATABASE + CREATE TABLE
+    </h1>
+
+    <p class="subtitulo">
+        Crear una base de datos y definir sus tablas
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Podés utilizar estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#crear-base" class="tarjeta-indice">
+                <h3>1. Crear base</h3>
+                <p>
+                    <h5 class="enlacesInternos"  >
+                        CREATE DATABASE
+                    </h5>
+                </p>
+            </a>
+
+
+            <a href="#mostrar-bases" class="tarjeta-indice">
+                <h3>2. Ver bases</h3>
+                <p>
+                    <h5 class="enlacesInternos" >
+                        SHOW DATABASES
+                    </h5>
+                </p>
+            </a>
+
+
+           <a href="#usar-base" class="tarjeta-indice">
+                <h3>3. Seleccionar</h3>
+                <p>
+                    <h5 class="enlacesInternos"  >
+                        USE
+                    </h5>
+                </p>
+            </a>
+
+
+           <a href="#create-table" class="tarjeta-indice">
+                <h3>4. Crear tablas</h3>
+                <p>
+                    <h5 class="enlacesInternos" >
+                        CREATE TABLE
+                    </h5>
+                </p>
+            </a>
+
+
+           <a href="#restricciones" class="tarjeta-indice">
+                <h3>5. Restricciones</h3>
+                <p>
+                    <h5 class="enlacesInternos" >
+                        PRIMARY KEY / FOREIGN KEY
+                    </h5>
+                </p>
+            </a>
+
+
+           <a href="#clave-compuesta" class="tarjeta-indice">
+                <h3>6. Claves compuestas</h3>
+                <p>
+                    <h6 class="enlacesInternos" >
+                        Clave primaria compuesta
+                    </h6>
+                </p>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE DATABASE
+    ========================== -->
+
+    <section class="bloque" id="crear-base">
+
+        <h2>1. CREATE DATABASE</h2>
+
+        <p>
+            Antes de crear las tablas necesitamos una base
+            de datos donde almacenarlas.
+        </p>
+
+        <p>
+            La instrucción
+            <span class="clave">CREATE DATABASE</span>
+            permite crear una nueva base de datos.
+        </p>
+
+        <pre>
+CREATE DATABASE escuela;
+        </pre>
+
+        <p>
+            En este ejemplo se crea una base de datos
+            llamada <span class="clave">escuela</span>.
+        </p>
+
+        <pre>
+CREATE DATABASE nombre_base;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+            |
+            <a class="enlacesInternos" href="#mostrar-bases">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW DATABASES
+    ========================== -->
+
+    <section class="bloque" id="mostrar-bases">
+
+        <h2>2. SHOW DATABASES</h2>
+
+        <p>
+            Podemos consultar las bases de datos disponibles
+            en el servidor utilizando:
+        </p>
+
+        <pre>
+SHOW DATABASES;
+        </pre>
+
+        <p>
+            MySQL mostrará una lista similar a:
+        </p>
+
+        <pre>
+information_schema
+mysql
+performance_schema
+escuela
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#crear-base">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#usar-base">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         USE
+    ========================== -->
+
+    <section class="bloque" id="usar-base">
+
+        <h2>3. USE</h2>
+
+        <p>
+            Una vez creada la base de datos debemos indicarle
+            a MySQL que queremos trabajar con ella.
+        </p>
+
+        <pre>
+USE escuela;
+        </pre>
+
+        <p>
+            A partir de ese momento las instrucciones como
+            <span class="clave">CREATE TABLE</span>
+            se ejecutarán sobre la base
+            <span class="clave">escuela</span>.
+        </p>
+
+        <pre>
+CREATE DATABASE escuela;
+
+USE escuela;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#mostrar-bases">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#create-table">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SECUENCIA INICIAL
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Secuencia inicial</h2>
+
+        <p>
+            Una secuencia típica para comenzar
+            una nueva base de datos sería:
+        </p>
+
+        <pre>
+CREATE DATABASE escuela;
+
+SHOW DATABASES;
+
+USE escuela;
+
+CREATE TABLE alumnos (
+    idAlumno INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100)
+);
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE TABLE
+    ========================== -->
+
+    <section class="bloque" id="create-table">
+
+        <h2>4. ¿Qué hace CREATE TABLE?</h2>
+
+        <p>
+            La instrucción <span class="clave">CREATE TABLE</span>
+            permite crear una nueva tabla dentro de una base de datos.
+        </p>
+
+        <p>
+            Al crear una tabla definimos su nombre,
+            sus columnas, los tipos de datos
+            y las restricciones que deben cumplir los datos.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#usar-base">↑ Anterior</a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>Sintaxis general</h2>
+
+        <pre>
+CREATE TABLE nombre_tabla (
+
+    columna1 TIPO,
+    columna2 TIPO,
+    columna3 TIPO
+
+);
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+        </p>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Ejemplo básico</h2>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    id INT,
+    nombre VARCHAR(100),
+    edad INT
+
+);
+        </pre>
+
+        <p>
+            Este ejemplo crea una tabla llamada
+            <span class="clave">alumnos</span>
+            con tres columnas.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ELEMENTOS DE COLUMNA
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Elementos de una columna</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Nombre</h3>
+
+                <p>
+                    Identifica a la columna dentro de la tabla.
+                </p>
+
+                <pre>nombre</pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tipo de dato</h3>
+
+                <p>
+                    Define qué clase de información puede almacenar.
+                </p>
+
+                <pre>VARCHAR(100)</pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Restricciones</h3>
+
+                <p>
+                    Definen reglas que deben cumplir los datos.
+                </p>
+
+                <pre>NOT NULL</pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TIPOS DE DATOS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Tipos de datos comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>INT</h3>
+
+                <p>
+                    Almacena números enteros.
+                </p>
+
+                <pre>edad INT</pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>VARCHAR</h3>
+
+                <p>
+                    Almacena texto de longitud variable.
+                </p>
+
+                <pre>nombre VARCHAR(100)</pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DATE</h3>
+
+                <p>
+                    Almacena fechas.
+                </p>
+
+                <pre>fechaNacimiento DATE</pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DECIMAL</h3>
+
+                <p>
+                    Almacena números con decimales.
+                </p>
+
+                <pre>precio DECIMAL(10,2)</pre>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESTRICCIONES
+    ========================== -->
+
+    <section class="bloque" id="restricciones">
+
+        <h2>5. Restricciones principales</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>PRIMARY KEY</h3>
+
+                <p>
+                    Identifica de forma única
+                    cada registro de una tabla.
+                </p>
+
+                <pre>
+id INT PRIMARY KEY
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>NOT NULL</h3>
+
+                <p>
+                    Obliga a que una columna
+                    tenga un valor.
+                </p>
+
+                <pre>
+nombre VARCHAR(100) NOT NULL
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>UNIQUE</h3>
+
+                <p>
+                    Evita que se repita
+                    el mismo valor.
+                </p>
+
+                <pre>
+email VARCHAR(100) UNIQUE
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DEFAULT</h3>
+
+                <p>
+                    Asigna un valor automáticamente
+                    cuando no se especifica otro.
+                </p>
+
+                <pre>
+activo BOOLEAN DEFAULT TRUE
+                </pre>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+            |
+            <a class="enlacesInternos" href="#clave-foranea">↓ Siguiente</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         AUTO_INCREMENT
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>AUTO_INCREMENT</h2>
+
+        <p>
+            En MySQL y MariaDB,
+            <span class="clave">AUTO_INCREMENT</span>
+            permite generar automáticamente un número
+            para cada nuevo registro.
+        </p>
+
+        <pre>
+id INT PRIMARY KEY AUTO_INCREMENT
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque" id="clave-foranea">
+
+        <h2>Clave foránea</h2>
+
+        <p>
+            Una <span class="clave">FOREIGN KEY</span>
+            permite relacionar una tabla con otra.
+        </p>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    idAlumno INT PRIMARY KEY AUTO_INCREMENT,
+
+    nombre VARCHAR(100) NOT NULL,
+
+    idCurso INT,
+
+    FOREIGN KEY (idCurso)
+    REFERENCES cursos(idCurso)
+
+);
+        </pre>
+
+        <p>
+            En este ejemplo,
+            <span class="clave">idCurso</span>
+            guarda un valor que debe existir previamente
+            en la tabla <span class="clave">cursos</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">↑ Subir</a>
+            |
+            <a class="enlacesInternos" href="#clave-compuesta">↓ Clave compuesta</a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CLAVE COMPUESTA
+    ========================== -->
+
+    <section class="bloque" id="clave-compuesta">
+
+        <h2>6. Clave primaria compuesta</h2>
+
+        <p>
+            Una tabla puede tener una clave primaria formada
+            por <span class="importante">dos o más columnas</span>.
+        </p>
+
+        <p>
+            A esto se le llama
+            <span class="clave">clave primaria compuesta</span>.
+        </p>
+
+        <pre>
+CREATE TABLE alumnos_cursos (
+
+    idAlumno INT,
+    idCurso INT,
+
+    PRIMARY KEY (idAlumno, idCurso)
+
+);
+        </pre>
+
+        <p>
+            <span class="clave">idAlumno</span>
+            puede repetirse y
+            <span class="clave">idCurso</span>
+            también puede repetirse.
+        </p>
+
+        <p>
+            Lo que no puede repetirse es la combinación:
+        </p>
+
+        <pre>
+(idAlumno, idCurso)
+        </pre>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>¿Hay dos PRIMARY KEY?</h2>
+
+        <p>
+            No. Una tabla tiene
+            <strong>una sola clave primaria</strong>.
+        </p>
+
+        <p>
+            Puede estar formada por una columna:
+        </p>
+
+        <pre>
+PRIMARY KEY (idAlumno)
+        </pre>
+
+        <p>
+            o por varias:
+        </p>
+
+        <pre>
+PRIMARY KEY (idAlumno, idCurso)
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         DOS FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Dos claves foráneas</h2>
+
+        <p>
+            En una tabla intermedia de una relación
+            <strong>muchos a muchos</strong>
+            es frecuente encontrar dos claves foráneas.
+        </p>
+
+        <pre>
+CREATE TABLE alumnos_cursos (
+
+    idAlumno INT,
+    idCurso INT,
+
+    FOREIGN KEY (idAlumno)
+    REFERENCES alumnos(idAlumno),
+
+    FOREIGN KEY (idCurso)
+    REFERENCES cursos(idCurso)
+
+);
+        </pre>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Dos FOREIGN KEY + PRIMARY KEY compuesta</h2>
+
+        <pre>
+CREATE TABLE alumnos_cursos (
+
+    idAlumno INT,
+    idCurso INT,
+
+    PRIMARY KEY (idAlumno, idCurso),
+
+    FOREIGN KEY (idAlumno)
+    REFERENCES alumnos(idAlumno),
+
+    FOREIGN KEY (idCurso)
+    REFERENCES cursos(idCurso)
+
+);
+        </pre>
+
+        <p>
+            Las dos columnas funcionan como claves foráneas
+            y al mismo tiempo forman juntas
+            la clave primaria.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO COMPLETO
+    ========================== -->
+
+    <section class="bloque" id="ejemplo-completo">
+
+        <h2>Ejemplo completo</h2>
+
+        <pre>
+CREATE DATABASE escuela;
+
+USE escuela;
+
+
+CREATE TABLE cursos (
+
+    idCurso INT
+    PRIMARY KEY
+    AUTO_INCREMENT,
+
+    nombre VARCHAR(100)
+    NOT NULL
+
+);
+
+
+CREATE TABLE alumnos (
+
+    idAlumno INT
+    PRIMARY KEY
+    AUTO_INCREMENT,
+
+    nombre VARCHAR(100)
+    NOT NULL,
+
+    email VARCHAR(100)
+    UNIQUE,
+
+    edad INT,
+
+    idCurso INT,
+
+    FOREIGN KEY (idCurso)
+    REFERENCES cursos(idCurso)
+
+);
+        </pre>
+
+        <p>
+            En este ejemplo primero creamos
+            <span class="clave">escuela</span>,
+            la seleccionamos y después creamos
+            las tablas <span class="clave">cursos</span>
+            y <span class="clave">alumnos</span>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Idea clave</h2>
+
+        <pre>
+CREATE DATABASE escuela;
+          ↓
+Crear base de datos
+
+
+USE escuela;
+          ↓
+Seleccionar base
+
+
+CREATE TABLE cursos (...);
+          ↓
+Crear tabla
+
+
+CREATE TABLE alumnos (...);
+          ↓
+Crear tabla y relaciones
+        </pre>
+
+        <p>
+            Los registros se agregan después
+            utilizando instrucciones como
+            <span class="clave">INSERT INTO</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · CREATE DATABASE · CREATE TABLE
+</footer>
+
+</body>
+
+</html>

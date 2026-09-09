@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RENAME - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DDL">
+        ←
+    </a>
+
+   <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        RENAME
+    </h1>
+
+    <p class="subtitulo">
+        Cambiar nombres de objetos en SQL
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué hace RENAME?
+                </h5>
+            </a>
+
+
+            <a href="#rename-table" class="tarjeta-indice">
+                <h3>2. RENAME TABLE</h3>
+                <h5 class="enlacesInternos">
+                    Renombrar tablas
+                </h5>
+            </a>
+
+
+            <a href="#alter-table" class="tarjeta-indice">
+                <h3>3. ALTER TABLE</h3>
+                <h5 class="enlacesInternos">
+                    Otra forma de renombrar
+                </h5>
+            </a>
+
+
+            <a href="#rename-column" class="tarjeta-indice">
+                <h3>4. COLUMN</h3>
+                <h5 class="enlacesInternos">
+                    Renombrar columnas
+                </h5>
+            </a>
+
+
+            <a href="#varias-tablas" class="tarjeta-indice">
+                <h3>5. Varias tablas</h3>
+                <h5 class="enlacesInternos">
+                    Renombrar varias
+                </h5>
+            </a>
+
+
+            <a href="#que-se-conserva" class="tarjeta-indice">
+                <h3>6. Estructura</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué se conserva?
+                </h5>
+            </a>
+
+
+            <a href="#precauciones" class="tarjeta-indice">
+                <h3>7. Precauciones</h3>
+                <h5 class="enlacesInternos">
+                    Relaciones y código
+                </h5>
+            </a>
+
+
+            <a href="#comparacion" class="tarjeta-indice">
+                <h3>8. Comparación</h3>
+                <h5 class="enlacesInternos">
+                    RENAME vs DROP
+                </h5>
+            </a>
+
+
+            <a href="#ejemplo" class="tarjeta-indice">
+                <h3>9. Ejemplo</h3>
+                <h5 class="enlacesInternos">
+                    Paso a paso
+                </h5>
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace RENAME?</h2>
+
+        <p>
+            La instrucción <span class="clave">RENAME</span>
+            permite cambiar el nombre de un objeto
+            que ya existe dentro de la base de datos.
+        </p>
+
+        <p>
+            Se utiliza principalmente para cambiar
+            el nombre de tablas.
+        </p>
+
+        <p>
+            También podemos renombrar columnas
+            utilizando <span class="clave">ALTER TABLE</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#rename-table">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RENAME TABLE
+    ========================== -->
+
+    <section class="bloque" id="rename-table">
+
+        <h2>2. RENAME TABLE</h2>
+
+        <p>
+            En MySQL y MariaDB podemos utilizar
+            <span class="clave">RENAME TABLE</span>
+            para cambiar el nombre de una tabla.
+        </p>
+
+        <pre>
+RENAME TABLE alumnos
+TO estudiantes;
+        </pre>
+
+        <p>
+            La tabla
+            <span class="clave">alumnos</span>
+            pasa a llamarse
+            <span class="clave">estudiantes</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#alter-table">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ANTES Y DESPUÉS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Antes de RENAME</h2>
+
+        <pre>
+alumnos
+
+idAlumno
+nombre
+edad
+        </pre>
+
+        <p>
+            Ejecutamos:
+        </p>
+
+        <pre>
+RENAME TABLE alumnos
+TO estudiantes;
+        </pre>
+
+        <p>
+            Después:
+        </p>
+
+        <pre>
+estudiantes
+
+idAlumno
+nombre
+edad
+        </pre>
+
+        <p>
+            Solamente cambió el nombre de la tabla.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ALTER TABLE RENAME
+    ========================== -->
+
+    <section class="bloque" id="alter-table">
+
+        <h2>3. RENAME con ALTER TABLE</h2>
+
+        <p>
+            También podemos cambiar el nombre
+            de una tabla utilizando
+            <span class="clave">ALTER TABLE</span>.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+RENAME TO estudiantes;
+        </pre>
+
+        <p>
+            El resultado es el mismo:
+            la tabla conserva sus datos y estructura,
+            pero cambia de nombre.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#rename-table">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#rename-column">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RENAME COLUMN
+    ========================== -->
+
+    <section class="bloque" id="rename-column">
+
+        <h2>4. Renombrar una columna</h2>
+
+        <p>
+            Para cambiar el nombre de una columna
+            podemos utilizar
+            <span class="clave">ALTER TABLE</span>
+            junto con
+            <span class="clave">RENAME COLUMN</span>.
+        </p>
+
+        <pre>
+ALTER TABLE estudiantes
+RENAME COLUMN nombre
+TO nombreCompleto;
+        </pre>
+
+        <p>
+            La columna
+            <span class="clave">nombre</span>
+            pasa a llamarse
+            <span class="clave">nombreCompleto</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#alter-table">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#varias-tablas">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Ejemplo de columna</h2>
+
+        <p>
+            Antes:
+        </p>
+
+        <pre>
+idAlumno
+nombre
+edad
+        </pre>
+
+        <p>
+            Ejecutamos:
+        </p>
+
+        <pre>
+ALTER TABLE estudiantes
+RENAME COLUMN nombre
+TO nombreCompleto;
+        </pre>
+
+        <p>
+            Después:
+        </p>
+
+        <pre>
+idAlumno
+nombreCompleto
+edad
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         VARIAS TABLAS
+    ========================== -->
+
+    <section class="bloque" id="varias-tablas">
+
+        <h2>5. Renombrar varias tablas</h2>
+
+        <p>
+            En MySQL y MariaDB se pueden renombrar
+            varias tablas en una sola instrucción.
+        </p>
+
+        <pre>
+RENAME TABLE
+
+alumnos TO estudiantes,
+
+cursos TO materias,
+
+docentes TO profesores;
+        </pre>
+
+        <p>
+            Cada tabla recibe su nuevo nombre
+            dentro de la misma instrucción.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#rename-column">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#que-se-conserva">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         QUÉ SE CONSERVA
+    ========================== -->
+
+    <section class="bloque" id="que-se-conserva">
+
+        <h2>6. ¿Qué se conserva?</h2>
+
+        <p>
+            Al renombrar una tabla no estamos
+            eliminando ni reconstruyendo su contenido.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Datos</h3>
+
+                <p>
+                    Los registros almacenados
+                    permanecen en la tabla.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Columnas</h3>
+
+                <p>
+                    Las columnas continúan
+                    formando parte de la tabla.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Tipos de datos</h3>
+
+                <p>
+                    Los tipos de datos
+                    permanecen sin cambios.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>PRIMARY KEY</h3>
+
+                <p>
+                    La clave primaria
+                    continúa definida.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>FOREIGN KEY</h3>
+
+                <p>
+                    Las restricciones continúan
+                    formando parte de la estructura.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Índices</h3>
+
+                <p>
+                    Los índices propios de la tabla
+                    continúan existiendo.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#varias-tablas">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#precauciones">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRECAUCIONES
+    ========================== -->
+
+    <section class="bloque" id="precauciones">
+
+        <h2>7. Precauciones al renombrar</h2>
+
+        <p>
+            Cambiar el nombre de una tabla
+            puede afectar otros elementos
+            que utilicen ese nombre.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Aplicaciones</h3>
+
+                <p>
+                    El código puede seguir intentando
+                    consultar el nombre anterior.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Consultas</h3>
+
+                <p>
+                    Consultas SQL guardadas pueden
+                    utilizar el nombre antiguo.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Vistas</h3>
+
+                <p>
+                    Conviene revisar vistas
+                    que dependan de la tabla.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            Por ejemplo, si teníamos:
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos;
+        </pre>
+
+        <p>
+            y la tabla ahora se llama
+            <span class="clave">estudiantes</span>,
+            la consulta deberá actualizarse:
+        </p>
+
+        <pre>
+SELECT *
+FROM estudiantes;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#que-se-conserva">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#comparacion">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         COMPARACIÓN
+    ========================== -->
+
+    <section class="bloque" id="comparacion">
+
+        <h2>8. RENAME vs DROP</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>RENAME</h3>
+
+                <p>
+                    Cambia el nombre del objeto,
+                    pero lo conserva.
+                </p>
+
+                <pre>
+RENAME TABLE alumnos
+TO estudiantes;
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP</h3>
+
+                <p>
+                    Elimina completamente
+                    el objeto.
+                </p>
+
+                <pre>
+DROP TABLE alumnos;
+                </pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bloque">
+
+        <h2>Comparación rápida</h2>
+
+        <pre>
+RENAME
+    ↓
+Cambia el nombre
+    ↓
+Datos permanecen
+    ↓
+Estructura permanece
+
+
+DROP
+    ↓
+Elimina el objeto
+    ↓
+Datos eliminados
+    ↓
+Estructura eliminada
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#precauciones">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#ejemplo">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO COMPLETO
+    ========================== -->
+
+    <section class="bloque" id="ejemplo">
+
+        <h2>9. Ejemplo paso a paso</h2>
+
+        <p>
+            Creamos inicialmente una tabla:
+        </p>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    idAlumno INT
+    PRIMARY KEY
+    AUTO_INCREMENT,
+
+    nombre VARCHAR(100),
+
+    edad INT
+
+);
+        </pre>
+
+        <p>
+            Después decidimos cambiar
+            el nombre de la tabla:
+        </p>
+
+        <pre>
+RENAME TABLE alumnos
+TO estudiantes;
+        </pre>
+
+        <p>
+            Ahora podemos consultar:
+        </p>
+
+        <pre>
+SELECT *
+FROM estudiantes;
+        </pre>
+
+        <p>
+            Luego decidimos cambiar
+            el nombre de una columna:
+        </p>
+
+        <pre>
+ALTER TABLE estudiantes
+RENAME COLUMN nombre
+TO nombreCompleto;
+        </pre>
+
+        <p>
+            La estructura final sería:
+        </p>
+
+        <pre>
+estudiantes
+
+idAlumno
+nombreCompleto
+edad
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#comparacion">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+RENAME TABLE
+       ↓
+Cambiar nombre de tabla
+
+
+ALTER TABLE
+RENAME TO
+       ↓
+Cambiar nombre de tabla
+
+
+ALTER TABLE
+RENAME COLUMN
+       ↓
+Cambiar nombre de columna
+        </pre>
+
+        <p>
+            La idea principal es:
+        </p>
+
+        <pre>
+RENAME
+   ↓
+CAMBIAR NOMBRE
+   ↓
+NO elimina datos
+   ↓
+NO elimina estructura
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DDL · RENAME
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GRANT - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DCL">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        GRANT
+    </h1>
+
+    <p class="subtitulo">
+        Otorgar permisos a usuarios
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Utilizá estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#que-es" class="tarjeta-indice">
+                <h3>1. Introducción</h3>
+                <h5 class="enlacesInternos">
+                    ¿Qué hace GRANT?
+                </h5>
+            </a>
+
+
+            <a href="#sintaxis" class="tarjeta-indice">
+                <h3>2. Sintaxis</h3>
+                <h5 class="enlacesInternos">
+                    Forma general
+                </h5>
+            </a>
+
+
+            <a href="#select" class="tarjeta-indice">
+                <h3>3. SELECT</h3>
+                <h5 class="enlacesInternos">
+                    Permiso de lectura
+                </h5>
+            </a>
+
+
+            <a href="#varios" class="tarjeta-indice">
+                <h3>4. Varios permisos</h3>
+                <h5 class="enlacesInternos">
+                    SELECT, INSERT, UPDATE...
+                </h5>
+            </a>
+
+
+            <a href="#tabla" class="tarjeta-indice">
+                <h3>5. Tabla</h3>
+                <h5 class="enlacesInternos">
+                    Permisos sobre una tabla
+                </h5>
+            </a>
+
+
+            <a href="#base" class="tarjeta-indice">
+                <h3>6. Base de datos</h3>
+                <h5 class="enlacesInternos">
+                    Permisos sobre toda la base
+                </h5>
+            </a>
+
+
+            <a href="#all" class="tarjeta-indice">
+                <h3>7. ALL PRIVILEGES</h3>
+                <h5 class="enlacesInternos">
+                    Todos los permisos
+                </h5>
+            </a>
+
+
+            <a href="#usuario-host" class="tarjeta-indice">
+                <h3>8. Usuario y host</h3>
+                <h5 class="enlacesInternos">
+                    'usuario'@'localhost'
+                </h5>
+            </a>
+
+
+            <a href="#errores" class="tarjeta-indice">
+                <h3>9. Errores</h3>
+                <h5 class="enlacesInternos">
+                    Problemas comunes
+                </h5>
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+                <h3>10. Resumen</h3>
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace GRANT?</h2>
+
+        <p>
+            La instrucción <span class="clave">GRANT</span>
+            permite otorgar permisos a un usuario
+            sobre una base de datos, una tabla
+            u otros objetos del gestor.
+        </p>
+
+        <p>
+            Forma parte de las instrucciones
+            <span class="clave">DCL</span>,
+            ya que se utiliza para controlar
+            el acceso de los usuarios.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#sintaxis">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque" id="sintaxis">
+
+        <h2>2. Sintaxis general</h2>
+
+        <pre>
+GRANT privilegio
+
+ON base.tabla
+
+TO 'usuario'@'host';
+        </pre>
+
+        <p>
+            La instrucción tiene tres partes importantes:
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Privilegio</h3>
+
+                <p>
+                    Indica qué acción puede realizar
+                    el usuario.
+                </p>
+
+                <pre>
+SELECT
+INSERT
+UPDATE
+DELETE
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Objeto</h3>
+
+                <p>
+                    Indica sobre qué base o tabla
+                    se aplica el permiso.
+                </p>
+
+                <pre>
+escuela.alumnos
+                </pre>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Usuario</h3>
+
+                <p>
+                    Indica quién recibe
+                    el permiso.
+                </p>
+
+                <pre>
+'juan'@'localhost'
+                </pre>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#select">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SELECT
+    ========================== -->
+
+    <section class="bloque" id="select">
+
+        <h2>3. Otorgar permiso SELECT</h2>
+
+        <p>
+            El permiso
+            <span class="clave">SELECT</span>
+            permite consultar información.
+        </p>
+
+        <pre>
+GRANT SELECT
+
+ON escuela.alumnos
+
+TO 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario
+            <span class="clave">juan</span>
+            podrá consultar la tabla
+            <span class="clave">alumnos</span>,
+            pero no podrá modificar sus datos
+            si no tiene otros permisos.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#sintaxis">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#varios">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         VARIOS PERMISOS
+    ========================== -->
+
+    <section class="bloque" id="varios">
+
+        <h2>4. Otorgar varios permisos</h2>
+
+        <p>
+            Podemos otorgar más de un privilegio
+            en una misma instrucción.
+        </p>
+
+        <pre>
+GRANT SELECT, INSERT, UPDATE
+
+ON escuela.alumnos
+
+TO 'juan'@'localhost';
+        </pre>
+
+        <p>
+            En este caso el usuario puede:
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>SELECT</h3>
+                <p>Consultar registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>INSERT</h3>
+                <p>Agregar registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>UPDATE</h3>
+                <p>Modificar registros.</p>
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#select">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#tabla">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         TABLA
+    ========================== -->
+
+    <section class="bloque" id="tabla">
+
+        <h2>5. Permisos sobre una tabla</h2>
+
+        <p>
+            Podemos dar permisos solamente
+            sobre una tabla específica.
+        </p>
+
+        <pre>
+GRANT SELECT
+
+ON escuela.alumnos
+
+TO 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario puede consultar
+            <span class="clave">escuela.alumnos</span>,
+            pero eso no significa que tenga acceso
+            a todas las demás tablas de la base.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#varios">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#base">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BASE COMPLETA
+    ========================== -->
+
+    <section class="bloque" id="base">
+
+        <h2>6. Permisos sobre toda una base de datos</h2>
+
+        <p>
+            El símbolo
+            <span class="clave">*</span>
+            representa todas las tablas
+            de una base de datos.
+        </p>
+
+        <pre>
+GRANT SELECT
+
+ON escuela.*
+
+TO 'juan'@'localhost';
+        </pre>
+
+        <p>
+            El usuario podrá realizar consultas
+            sobre todas las tablas
+            de la base
+            <span class="clave">escuela</span>.
+        </p>
+
+        <pre>
+escuela.*
+        ↓
+Todas las tablas
+de escuela
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#tabla">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#all">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ALL PRIVILEGES
+    ========================== -->
+
+    <section class="bloque" id="all">
+
+        <h2>7. ALL PRIVILEGES</h2>
+
+        <p>
+            <span class="clave">ALL PRIVILEGES</span>
+            permite otorgar todos los privilegios disponibles
+            para el nivel indicado.
+        </p>
+
+        <pre>
+GRANT ALL PRIVILEGES
+
+ON escuela.*
+
+TO 'admin'@'localhost';
+        </pre>
+
+        <p>
+            En este caso
+            <span class="clave">admin</span>
+            recibe todos los privilegios
+            sobre la base
+            <span class="clave">escuela</span>.
+        </p>
+
+        <p>
+            <span class="importante">
+                Atención:
+            </span>
+            no conviene otorgar más permisos
+            de los necesarios.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#base">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#usuario-host">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         USUARIO Y HOST
+    ========================== -->
+
+    <section class="bloque" id="usuario-host">
+
+        <h2>8. Usuario y host</h2>
+
+        <p>
+            En MySQL y MariaDB,
+            un usuario se identifica por
+            su nombre y por el lugar
+            desde donde puede conectarse.
+        </p>
+
+        <pre>
+'juan'@'localhost'
+        </pre>
+
+        <p>
+            Esto significa:
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>'juan'</h3>
+
+                <p>
+                    Nombre del usuario.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>'localhost'</h3>
+
+                <p>
+                    Puede conectarse
+                    desde el mismo servidor.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+GRANT SELECT
+
+ON escuela.*
+
+TO 'juan'@'localhost';
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#all">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#errores">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRIVILEGIOS COMUNES
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Privilegios comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>SELECT</h3>
+                <p>Consultar información.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>INSERT</h3>
+                <p>Agregar registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>UPDATE</h3>
+                <p>Modificar registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>DELETE</h3>
+                <p>Eliminar registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>CREATE</h3>
+                <p>Crear objetos.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>DROP</h3>
+                <p>Eliminar objetos.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>ALTER</h3>
+                <p>Modificar estructuras.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLOS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Ejemplos de permisos</h2>
+
+        <p>
+            Solo lectura:
+        </p>
+
+        <pre>
+GRANT SELECT
+
+ON escuela.*
+
+TO 'lector'@'localhost';
+        </pre>
+
+
+        <p>
+            Lectura y escritura:
+        </p>
+
+        <pre>
+GRANT SELECT, INSERT, UPDATE, DELETE
+
+ON escuela.*
+
+TO 'editor'@'localhost';
+        </pre>
+
+
+        <p>
+            Permisos completos:
+        </p>
+
+        <pre>
+GRANT ALL PRIVILEGES
+
+ON escuela.*
+
+TO 'administrador'@'localhost';
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         ERRORES
+    ========================== -->
+
+    <section class="bloque" id="errores">
+
+        <h2>9. Errores comunes</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>Usuario incorrecto</h3>
+
+                <p>
+                    El usuario indicado
+                    puede no existir.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Host incorrecto</h3>
+
+                <p>
+                    El usuario puede existir
+                    para otro host.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Objeto incorrecto</h3>
+
+                <p>
+                    La base o tabla indicada
+                    puede no existir.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>Exceso de permisos</h3>
+
+                <p>
+                    Dar ALL PRIVILEGES
+                    cuando no es necesario.
+                </p>
+
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#usuario-host">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRINCIPIO DE MENOR PRIVILEGIO
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Buena práctica</h2>
+
+        <p>
+            Lo recomendable es otorgar
+            solamente los permisos
+            que el usuario realmente necesita.
+        </p>
+
+        <p>
+            Por ejemplo, si un usuario
+            solamente necesita consultar:
+        </p>
+
+        <pre>
+GRANT SELECT
+
+ON escuela.*
+
+TO 'lector'@'localhost';
+        </pre>
+
+        <p>
+            No sería necesario darle:
+        </p>
+
+        <pre>
+INSERT
+UPDATE
+DELETE
+DROP
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Idea clave</h2>
+
+        <pre>
+GRANT
+   ↓
+Otorgar permisos
+   ↓
+¿Qué puede hacer?
+   ↓
+SELECT / INSERT / UPDATE / DELETE
+   ↓
+¿Sobre qué?
+   ↓
+Base de datos / Tabla
+   ↓
+¿A quién?
+   ↓
+Usuario
+        </pre>
+
+        <p>
+            La estructura principal es:
+        </p>
+
+        <pre>
+GRANT privilegio
+
+ON base.tabla
+
+TO 'usuario'@'host';
+        </pre>
+
+        <p>
+            Y una forma sencilla
+            de recordar DCL:
+        </p>
+
+        <pre>
+GRANT
+   ↓
+DAR permisos
+
+
+REVOKE
+   ↓
+QUITAR permisos
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DCL · GRANT
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ALTER TABLE - SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="index.html" title="Volver a DDL">
+        ←
+    </a>
+
+ <img src="../img/LOGO.png" alt="">
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        ALTER TABLE
+    </h1>
+
+    <p class="subtitulo">
+        Modificar la estructura de una tabla
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Podés utilizar estos accesos para desplazarte
+            rápidamente por la página.
+        </p>
+
+        <div class="grid-indice">
+
+
+            <a href="#que-es" class="tarjeta-indice">
+
+                <h3>1. Introducción</h3>
+
+                <h5 class="enlacesInternos">
+                    ¿Qué hace ALTER TABLE?
+                </h5>
+
+            </a>
+
+
+            <a href="#add" class="tarjeta-indice">
+
+                <h3>2. ADD</h3>
+
+                <h5 class="enlacesInternos">
+                    Agregar elementos
+                </h5>
+
+            </a>
+
+
+            <a href="#modify" class="tarjeta-indice">
+
+                <h3>3. MODIFY</h3>
+
+                <h5 class="enlacesInternos">
+                    Modificar columnas
+                </h5>
+
+            </a>
+
+
+            <a href="#rename" class="tarjeta-indice">
+
+                <h3>4. RENAME</h3>
+
+                <h5 class="enlacesInternos">
+                    Renombrar
+                </h5>
+
+            </a>
+
+
+            <a href="#drop" class="tarjeta-indice">
+
+                <h3>5. DROP</h3>
+
+                <h5 class="enlacesInternos">
+                    Eliminar elementos
+                </h5>
+
+            </a>
+
+
+            <a href="#primary-key" class="tarjeta-indice">
+
+                <h3>6. PRIMARY KEY</h3>
+
+                <h5 class="enlacesInternos">
+                    Claves primarias
+                </h5>
+
+            </a>
+
+
+            <a href="#foreign-key" class="tarjeta-indice">
+
+                <h3>7. FOREIGN KEY</h3>
+
+                <h5 class="enlacesInternos">
+                    Claves foráneas
+                </h5>
+
+            </a>
+
+
+            <a href="#restricciones" class="tarjeta-indice">
+
+                <h3>8. Restricciones</h3>
+
+                <h5 class="enlacesInternos">
+                    UNIQUE y DEFAULT
+                </h5>
+
+            </a>
+
+
+            <a href="#ejemplo" class="tarjeta-indice">
+
+                <h3>9. Ejemplo</h3>
+
+                <h5 class="enlacesInternos">
+                    Paso a paso
+                </h5>
+
+            </a>
+
+
+            <a href="#resumen" class="tarjeta-indice">
+
+                <h3>10. Resumen</h3>
+
+                <h5 class="enlacesInternos">
+                    Idea clave
+                </h5>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="que-es">
+
+        <h2>1. ¿Qué hace ALTER TABLE?</h2>
+
+        <p>
+            La instrucción <span class="clave">ALTER TABLE</span>
+            permite modificar la estructura de una tabla
+            que ya fue creada.
+        </p>
+
+        <p>
+            Podemos agregar, modificar, renombrar o eliminar
+            columnas y también agregar o quitar restricciones.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+            |
+            <a class="enlacesInternos" href="#add">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SINTAXIS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Sintaxis general</h2>
+
+        <pre>
+ALTER TABLE nombre_tabla
+operación;
+        </pre>
+
+        <p>
+            La operación indica qué cambio queremos
+            realizar sobre la estructura de la tabla.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         OPERACIONES
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Operaciones principales</h2>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+
+                <h3>ADD</h3>
+
+                <p>
+                    Agregar columnas o restricciones.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>MODIFY</h3>
+
+                <p>
+                    Modificar el tipo o propiedades
+                    de una columna.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>DROP</h3>
+
+                <p>
+                    Eliminar columnas o restricciones.
+                </p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <h3>RENAME</h3>
+
+                <p>
+                    Cambiar el nombre de columnas
+                    o de la tabla.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ADD
+    ========================== -->
+
+    <section class="bloque" id="add">
+
+        <h2>2. ADD</h2>
+
+        <p>
+            Se utiliza <span class="clave">ADD</span>
+            para agregar nuevos elementos
+            a la estructura de una tabla.
+        </p>
+
+        <p>
+            Uno de sus usos más comunes
+            es agregar una nueva columna.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+ADD telefono VARCHAR(20);
+        </pre>
+
+        <p>
+            En este caso agregamos una columna
+            llamada <span class="clave">telefono</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#que-es">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#modify">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         AGREGAR VARIAS
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Agregar varias columnas</h2>
+
+        <p>
+            También podemos agregar varias columnas
+            en una misma instrucción.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+
+ADD direccion VARCHAR(150),
+
+ADD fechaNacimiento DATE;
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         MODIFY
+    ========================== -->
+
+    <section class="bloque" id="modify">
+
+        <h2>3. MODIFY</h2>
+
+        <p>
+            En MySQL y MariaDB,
+            <span class="clave">MODIFY</span>
+            permite modificar el tipo de dato
+            o las propiedades de una columna.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+MODIFY nombre VARCHAR(150);
+        </pre>
+
+        <p>
+            En este ejemplo cambiamos el tamaño
+            permitido para la columna
+            <span class="clave">nombre</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#add">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#rename">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         NOT NULL
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Agregar NOT NULL</h2>
+
+        <p>
+            Podemos modificar una columna para indicar
+            que obligatoriamente debe contener un valor.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+MODIFY nombre VARCHAR(150) NOT NULL;
+        </pre>
+
+        <p>
+            Al utilizar <span class="clave">MODIFY</span>
+            debemos volver a indicar el tipo de dato.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         AUTO_INCREMENT
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Agregar AUTO_INCREMENT</h2>
+
+        <pre>
+ALTER TABLE alumnos
+MODIFY idAlumno INT AUTO_INCREMENT;
+        </pre>
+
+        <p>
+            Esto hace que MySQL genere automáticamente
+            un nuevo número para cada registro.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RENAME
+    ========================== -->
+
+    <section class="bloque" id="rename">
+
+        <h2>4. RENAME</h2>
+
+        <p>
+            Podemos cambiar el nombre
+            de una columna existente.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+RENAME COLUMN nombre
+TO nombreCompleto;
+        </pre>
+
+        <p>
+            En este caso la columna
+            <span class="clave">nombre</span>
+            pasa a llamarse
+            <span class="clave">nombreCompleto</span>.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#modify">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#drop">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RENAME TABLE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Renombrar una tabla</h2>
+
+        <pre>
+ALTER TABLE alumnos
+RENAME TO estudiantes;
+        </pre>
+
+        <p>
+            La tabla conserva su estructura
+            y sus datos.
+            Solamente cambia su nombre.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DROP
+    ========================== -->
+
+    <section class="bloque" id="drop">
+
+        <h2>5. DROP</h2>
+
+        <p>
+            <span class="clave">DROP COLUMN</span>
+            permite eliminar una columna
+            de una tabla existente.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+DROP COLUMN telefono;
+        </pre>
+
+        <p>
+            <span class="importante">Atención:</span>
+            al eliminar la columna también se eliminan
+            todos los datos almacenados en ella.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#rename">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#primary-key">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRIMARY KEY
+    ========================== -->
+
+    <section class="bloque" id="primary-key">
+
+        <h2>6. PRIMARY KEY</h2>
+
+        <p>
+            Podemos agregar una clave primaria
+            después de haber creado la tabla.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+ADD PRIMARY KEY (idAlumno);
+        </pre>
+
+        <p>
+            A partir de este momento
+            <span class="clave">idAlumno</span>
+            identifica de forma única cada registro.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#drop">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#foreign-key">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRIMARY KEY COMPUESTA
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Clave primaria compuesta</h2>
+
+        <p>
+            También podemos agregar una clave primaria
+            formada por dos o más columnas.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos_cursos
+ADD PRIMARY KEY (idAlumno, idCurso);
+        </pre>
+
+        <p>
+            Sigue existiendo
+            <strong>una sola PRIMARY KEY</strong>,
+            pero está formada por dos columnas.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DROP PRIMARY KEY
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Eliminar la PRIMARY KEY</h2>
+
+        <pre>
+ALTER TABLE alumnos
+DROP PRIMARY KEY;
+        </pre>
+
+        <p>
+            Esto elimina la restricción
+            de clave primaria de la tabla.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque" id="foreign-key">
+
+        <h2>7. FOREIGN KEY</h2>
+
+        <p>
+            <span class="clave">ALTER TABLE</span>
+            también permite crear relaciones entre tablas
+            después de haberlas creado.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+
+ADD CONSTRAINT fk_alumno_curso
+
+FOREIGN KEY (idCurso)
+
+REFERENCES cursos(idCurso);
+        </pre>
+
+        <p>
+            <span class="clave">fk_alumno_curso</span>
+            es el nombre que le damos
+            a la restricción.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#primary-key">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#restricciones">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DOS FOREIGN KEY
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Agregar dos claves foráneas</h2>
+
+        <p>
+            Esto es frecuente en tablas intermedias
+            de una relación muchos a muchos.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos_cursos
+
+ADD CONSTRAINT fk_alumno
+FOREIGN KEY (idAlumno)
+REFERENCES alumnos(idAlumno),
+
+ADD CONSTRAINT fk_curso
+FOREIGN KEY (idCurso)
+REFERENCES cursos(idCurso);
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         ELIMINAR FK
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Eliminar una FOREIGN KEY</h2>
+
+        <p>
+            Para eliminar una clave foránea necesitamos
+            conocer el nombre de la restricción.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+DROP FOREIGN KEY fk_alumno_curso;
+        </pre>
+
+    </section>
+
+
+    <!-- =========================
+         RESTRICCIONES
+    ========================== -->
+
+    <section class="bloque" id="restricciones">
+
+        <h2>8. Restricciones</h2>
+
+        <p>
+            ALTER TABLE también permite agregar
+            diferentes restricciones a columnas existentes.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#foreign-key">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#ejemplo">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         UNIQUE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Agregar UNIQUE</h2>
+
+        <p>
+            <span class="clave">UNIQUE</span>
+            evita valores duplicados.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+
+ADD CONSTRAINT uq_email
+
+UNIQUE (email);
+        </pre>
+
+        <p>
+            Ahora dos alumnos no podrán
+            tener el mismo email.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DEFAULT
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Agregar DEFAULT</h2>
+
+        <p>
+            Podemos establecer un valor
+            predeterminado para una columna.
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+ALTER activo SET DEFAULT TRUE;
+        </pre>
+
+        <p>
+            Si al insertar un registro
+            no especificamos un valor para
+            <span class="clave">activo</span>,
+            se utilizará el valor predeterminado.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO
+    ========================== -->
+
+    <section class="bloque" id="ejemplo">
+
+        <h2>9. Ejemplo paso a paso</h2>
+
+        <p>
+            Supongamos que inicialmente
+            tenemos esta tabla:
+        </p>
+
+        <pre>
+CREATE TABLE alumnos (
+
+    idAlumno INT,
+
+    nombre VARCHAR(100)
+
+);
+        </pre>
+
+
+        <p>
+            Agregamos una columna para la edad:
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+ADD edad INT;
+        </pre>
+
+
+        <p>
+            Agregamos la clave primaria:
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+ADD PRIMARY KEY (idAlumno);
+        </pre>
+
+
+        <p>
+            Hacemos obligatorio el nombre:
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+MODIFY nombre VARCHAR(100) NOT NULL;
+        </pre>
+
+
+        <p>
+            Finalmente agregamos un email:
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+ADD email VARCHAR(100);
+        </pre>
+
+
+        <p>
+            Y hacemos que el email sea único:
+        </p>
+
+        <pre>
+ALTER TABLE alumnos
+
+ADD CONSTRAINT uq_email
+UNIQUE (email);
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#restricciones">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>10. Resumen</h2>
+
+        <pre>
+ALTER TABLE alumnos
+ADD ...
+        ↓
+Agregar
+
+
+ALTER TABLE alumnos
+MODIFY ...
+        ↓
+Modificar
+
+
+ALTER TABLE alumnos
+DROP ...
+        ↓
+Eliminar
+
+
+ALTER TABLE alumnos
+RENAME ...
+        ↓
+Renombrar
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Subir
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         IDEA CLAVE
+    ========================== -->
+
+    <section class="bloque">
+
+        <h2>Idea clave</h2>
+
+        <p>
+            <span class="clave">CREATE TABLE</span>
+            crea la estructura inicial de una tabla.
+        </p>
+
+        <p>
+            <span class="clave">ALTER TABLE</span>
+            permite modificar esa estructura
+            posteriormente.
+        </p>
+
+        <pre>
+CREATE TABLE
+      ↓
+Crear estructura
+
+
+ALTER TABLE
+      ↓
+Modificar estructura
+
+
+ADD
+      ↓
+Agregar
+
+
+MODIFY
+      ↓
+Modificar
+
+
+DROP
+      ↓
+Eliminar
+
+
+RENAME
+      ↓
+Renombrar
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · DDL · ALTER TABLE
+</footer>
+
+</body>
+
+</html>
