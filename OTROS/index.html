@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Otros comandos SQL</title>
+
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body id="inicio">
+
+<header>
+
+    <a class="volver" href="../index.html" title="Volver">
+        ←
+    </a>
+
+    <img src="../img/LOGO.png" alt="Logo">
+
+</header>
+
+
+<main>
+
+    <h1 class="titulo">
+        Otros comandos SQL
+    </h1>
+
+    <p class="subtitulo">
+        Utilidades, inspección y administración
+    </p>
+
+    <div class="linea"></div>
+
+
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================== -->
+
+    <section class="bloque" id="introduccion">
+
+        <h2>🧰 ¿Qué encontramos acá?</h2>
+
+        <p>
+            Existen instrucciones SQL que no encajan
+            de forma tan directa dentro de las categorías
+            DDL, DML, DQL, DCL o TCL.
+        </p>
+
+        <p>
+            Muchas se utilizan para inspeccionar
+            bases de datos, tablas, estructuras,
+            configuración o funcionamiento del servidor.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#indice">
+                ↓ Ir al índice
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ÍNDICE
+    ========================== -->
+
+    <section class="bloque" id="indice">
+
+        <h2>📌 Contenido</h2>
+
+        <p>
+            Seleccioná un comando para ir
+            directamente a su explicación.
+        </p>
+
+        <div class="grid-indice">
+
+            <a href="#show-databases" class="tarjeta-indice">
+                <h3>1. SHOW DATABASES</h3>
+                <h5 class="enlacesInternos">
+                    Ver bases de datos
+                </h5>
+            </a>
+
+
+            <a href="#use" class="tarjeta-indice">
+                <h3>2. USE</h3>
+                <h5 class="enlacesInternos">
+                    Seleccionar base
+                </h5>
+            </a>
+
+
+            <a href="#show-tables" class="tarjeta-indice">
+                <h3>3. SHOW TABLES</h3>
+                <h5 class="enlacesInternos">
+                    Ver tablas
+                </h5>
+            </a>
+
+
+            <a href="#describe" class="tarjeta-indice">
+                <h3>4. DESCRIBE</h3>
+                <h5 class="enlacesInternos">
+                    Ver estructura
+                </h5>
+            </a>
+
+
+            <a href="#show-columns" class="tarjeta-indice">
+                <h3>5. SHOW COLUMNS</h3>
+                <h5 class="enlacesInternos">
+                    Ver columnas
+                </h5>
+            </a>
+
+
+            <a href="#show-create-table" class="tarjeta-indice">
+                <h3>6. SHOW CREATE TABLE</h3>
+                <h5 class="enlacesInternos">
+                    Ver creación
+                </h5>
+            </a>
+
+
+            <a href="#explain" class="tarjeta-indice">
+                <h3>7. EXPLAIN</h3>
+                <h5 class="enlacesInternos">
+                    Analizar consultas
+                </h5>
+            </a>
+
+
+            <a href="#show-variables" class="tarjeta-indice">
+                <h3>8. SHOW VARIABLES</h3>
+                <h5 class="enlacesInternos">
+                    Ver configuración
+                </h5>
+            </a>
+
+
+            <a href="#show-status" class="tarjeta-indice">
+                <h3>9. SHOW STATUS</h3>
+                <h5 class="enlacesInternos">
+                    Ver estado
+                </h5>
+            </a>
+
+
+            <a href="#set" class="tarjeta-indice">
+                <h3>10. SET</h3>
+                <h5 class="enlacesInternos">
+                    Cambiar variables
+                </h5>
+            </a>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#introduccion">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#show-databases">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW DATABASES
+    ========================== -->
+
+    <section class="bloque" id="show-databases">
+
+        <h2>1. SHOW DATABASES</h2>
+
+        <p>
+            Permite mostrar las bases de datos
+            disponibles en el servidor.
+        </p>
+
+        <pre>
+SHOW DATABASES;
+        </pre>
+
+        <p>
+            Es útil para conocer qué bases
+            existen antes de seleccionar una.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#indice">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#use">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         USE
+    ========================== -->
+
+    <section class="bloque" id="use">
+
+        <h2>2. USE</h2>
+
+        <p>
+            Permite seleccionar la base de datos
+            sobre la que vamos a trabajar.
+        </p>
+
+        <pre>
+USE escuela;
+        </pre>
+
+        <p>
+            Después de ejecutar este comando,
+            las instrucciones se aplicarán
+            sobre la base seleccionada,
+            salvo que indiquemos otra explícitamente.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#show-databases">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#show-tables">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW TABLES
+    ========================== -->
+
+    <section class="bloque" id="show-tables">
+
+        <h2>3. SHOW TABLES</h2>
+
+        <p>
+            Muestra todas las tablas
+            de la base de datos actual.
+        </p>
+
+        <pre>
+SHOW TABLES;
+        </pre>
+
+        <p>
+            Antes debemos haber seleccionado
+            una base de datos con:
+        </p>
+
+        <pre>
+USE escuela;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#use">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#describe">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DESCRIBE
+    ========================== -->
+
+    <section class="bloque" id="describe">
+
+        <h2>4. DESCRIBE</h2>
+
+        <p>
+            Permite ver la estructura
+            de una tabla.
+        </p>
+
+        <pre>
+DESCRIBE alumnos;
+        </pre>
+
+        <p>
+            También puede utilizarse
+            la forma abreviada:
+        </p>
+
+        <pre>
+DESC alumnos;
+        </pre>
+
+        <p>
+            Podemos ver información como:
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>Field</h3>
+                <p>Nombre de la columna.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Type</h3>
+                <p>Tipo de dato.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Null</h3>
+                <p>Indica si acepta NULL.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Key</h3>
+                <p>Información sobre claves.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Default</h3>
+                <p>Valor por defecto.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Extra</h3>
+                <p>Información adicional.</p>
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#show-tables">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#show-columns">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW COLUMNS
+    ========================== -->
+
+    <section class="bloque" id="show-columns">
+
+        <h2>5. SHOW COLUMNS</h2>
+
+        <p>
+            También permite consultar
+            las columnas de una tabla.
+        </p>
+
+        <pre>
+SHOW COLUMNS
+FROM alumnos;
+        </pre>
+
+        <p>
+            Su resultado es similar
+            al de DESCRIBE.
+        </p>
+
+        <pre>
+DESCRIBE alumnos;
+
+SHOW COLUMNS FROM alumnos;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#describe">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#show-create-table">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW CREATE TABLE
+    ========================== -->
+
+    <section class="bloque" id="show-create-table">
+
+        <h2>6. SHOW CREATE TABLE</h2>
+
+        <p>
+            Permite ver la instrucción
+            utilizada por el servidor
+            para definir una tabla.
+        </p>
+
+        <pre>
+SHOW CREATE TABLE alumnos;
+        </pre>
+
+        <p>
+            Es especialmente útil para revisar:
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>Columnas</h3>
+                <p>Definición completa.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>PRIMARY KEY</h3>
+                <p>Clave primaria.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>FOREIGN KEY</h3>
+                <p>Relaciones con otras tablas.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Restricciones</h3>
+                <p>UNIQUE, DEFAULT y otras.</p>
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#show-columns">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#explain">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EXPLAIN
+    ========================== -->
+
+    <section class="bloque" id="explain">
+
+        <h2>7. EXPLAIN</h2>
+
+        <p>
+            <span class="clave">EXPLAIN</span>
+            permite analizar cómo el motor
+            piensa ejecutar una consulta.
+        </p>
+
+        <pre>
+EXPLAIN
+SELECT *
+FROM alumnos
+WHERE id = 5;
+        </pre>
+
+        <p>
+            Puede ayudarnos a entender
+            si la consulta utiliza índices
+            y cómo accede a las tablas.
+        </p>
+
+        <p>
+            Es especialmente útil
+            para analizar rendimiento.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#show-create-table">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#show-variables">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW VARIABLES
+    ========================== -->
+
+    <section class="bloque" id="show-variables">
+
+        <h2>8. SHOW VARIABLES</h2>
+
+        <p>
+            Permite consultar variables
+            de configuración del servidor.
+        </p>
+
+        <pre>
+SHOW VARIABLES;
+        </pre>
+
+        <p>
+            También podemos buscar
+            una variable específica.
+        </p>
+
+        <pre>
+SHOW VARIABLES
+LIKE 'autocommit';
+        </pre>
+
+        <p>
+            Otro ejemplo:
+        </p>
+
+        <pre>
+SHOW VARIABLES
+LIKE 'max_connections';
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#explain">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#show-status">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SHOW STATUS
+    ========================== -->
+
+    <section class="bloque" id="show-status">
+
+        <h2>9. SHOW STATUS</h2>
+
+        <p>
+            Permite consultar información
+            sobre el estado actual
+            del servidor.
+        </p>
+
+        <pre>
+SHOW STATUS;
+        </pre>
+
+        <p>
+            También podemos buscar
+            información específica:
+        </p>
+
+        <pre>
+SHOW STATUS
+LIKE 'Threads_connected';
+        </pre>
+
+        <p>
+            Puede utilizarse para conocer
+            datos de conexiones,
+            consultas y funcionamiento
+            del servidor.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#show-variables">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#set">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SET
+    ========================== -->
+
+    <section class="bloque" id="set">
+
+        <h2>10. SET</h2>
+
+        <p>
+            La instrucción
+            <span class="clave">SET</span>
+            permite modificar determinadas
+            variables o configuraciones.
+        </p>
+
+        <p>
+            Por ejemplo:
+        </p>
+
+        <pre>
+SET autocommit = 0;
+        </pre>
+
+        <p>
+            Esto desactiva temporalmente
+            la confirmación automática
+            de transacciones.
+        </p>
+
+        <p>
+            Para volver a activarla:
+        </p>
+
+        <pre>
+SET autocommit = 1;
+        </pre>
+
+        <p>
+            <span class="importante">
+                Algunas variables requieren permisos especiales
+                o solo pueden modificarse en determinados niveles.
+            </span>
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#show-status">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EJEMPLO DE RECORRIDO
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>💡 Recorrido típico</h2>
+
+        <p>
+            Cuando entramos a un servidor
+            podemos utilizar varios de estos comandos
+            para orientarnos.
+        </p>
+
+        <pre>
+SHOW DATABASES;
+
+USE escuela;
+
+SHOW TABLES;
+
+DESCRIBE alumnos;
+
+SHOW CREATE TABLE alumnos;
+        </pre>
+
+        <p>
+            Podríamos imaginarlo así:
+        </p>
+
+        <pre>
+Servidor
+   ↓
+SHOW DATABASES
+   ↓
+Elegir base
+   ↓
+USE
+   ↓
+SHOW TABLES
+   ↓
+Elegir tabla
+   ↓
+DESCRIBE
+   ↓
+Ver estructura
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#set">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    pablocossio.net · SQL · Otros comandos
+</footer>
+
+</body>
+
+</html>

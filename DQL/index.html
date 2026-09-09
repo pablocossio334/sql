@@ -18,7 +18,7 @@
         ←
     </a>
 
-    pablocossio.net
+   <img src="../img/LOGO.png" alt="">
 
 </header>
 
@@ -40,7 +40,7 @@
          INTRODUCCIÓN
     ========================== -->
 
-    <section class="bloque">
+    <section class="bloque" id="introduccion">
 
         <h2>🔎 ¿Qué es DQL?</h2>
 
@@ -67,6 +67,12 @@ SELECT
             o combinar información.
         </p>
 
+        <p>
+            <a class="enlacesInternos" href="#indice">
+                ↓ Ir al índice
+            </a>
+        </p>
+
     </section>
 
 
@@ -74,144 +80,594 @@ SELECT
          ÍNDICE
     ========================== -->
 
-    <section class="bloque">
+    <section class="bloque" id="indice">
 
         <h2>📌 Contenido</h2>
 
         <p>
-            Seleccioná un tema para estudiar
-            las distintas partes de una consulta SELECT.
+            Seleccioná un tema para ir directamente
+            a la sección correspondiente.
         </p>
 
         <div class="grid-indice">
 
-
-            <a href="select.html" class="tarjeta-indice">
-
-                <h3>SELECT</h3>
-
+            <a href="#select" class="tarjeta-indice">
+                <h3>1. SELECT</h3>
                 <h5 class="enlacesInternos">
                     Consultar datos
                 </h5>
-
             </a>
 
 
-            <a href="where.html" class="tarjeta-indice">
-
-                <h3>WHERE</h3>
-
+            <a href="#where" class="tarjeta-indice">
+                <h3>2. WHERE</h3>
                 <h5 class="enlacesInternos">
                     Filtrar registros
                 </h5>
-
             </a>
 
 
-            <a href="distinct.html" class="tarjeta-indice">
-
-                <h3>DISTINCT</h3>
-
+            <a href="#distinct" class="tarjeta-indice">
+                <h3>3. DISTINCT</h3>
                 <h5 class="enlacesInternos">
                     Evitar repetidos
                 </h5>
-
             </a>
 
 
-            <a href="order-by.html" class="tarjeta-indice">
-
-                <h3>ORDER BY</h3>
-
+            <a href="#order-by" class="tarjeta-indice">
+                <h3>4. ORDER BY</h3>
                 <h5 class="enlacesInternos">
                     Ordenar resultados
                 </h5>
-
             </a>
 
 
-            <a href="limit.html" class="tarjeta-indice">
-
-                <h3>LIMIT</h3>
-
+            <a href="#limit" class="tarjeta-indice">
+                <h3>5. LIMIT</h3>
                 <h5 class="enlacesInternos">
                     Limitar resultados
                 </h5>
-
             </a>
 
 
-            <a href="group-by.html" class="tarjeta-indice">
-
-                <h3>GROUP BY</h3>
-
+            <a href="#group-by" class="tarjeta-indice">
+                <h3>6. GROUP BY</h3>
                 <h5 class="enlacesInternos">
                     Agrupar registros
                 </h5>
-
             </a>
 
 
-            <a href="having.html" class="tarjeta-indice">
-
-                <h3>HAVING</h3>
-
+            <a href="#having" class="tarjeta-indice">
+                <h3>7. HAVING</h3>
                 <h5 class="enlacesInternos">
                     Filtrar grupos
                 </h5>
-
             </a>
 
 
-            <a href="join.html" class="tarjeta-indice">
-
-                <h3>JOIN</h3>
-
+            <a href="#join" class="tarjeta-indice">
+                <h3>8. JOIN</h3>
                 <h5 class="enlacesInternos">
                     Relacionar tablas
                 </h5>
-
             </a>
 
 
-            <a href="funciones.html" class="tarjeta-indice">
-
-                <h3>FUNCIONES</h3>
-
+            <a href="#funciones" class="tarjeta-indice">
+                <h3>9. FUNCIONES</h3>
                 <h5 class="enlacesInternos">
                     COUNT · SUM · AVG
                 </h5>
-
             </a>
 
 
-            <a href="subconsultas.html" class="tarjeta-indice">
-
-                <h3>SUBCONSULTAS</h3>
-
+            <a href="#subconsultas" class="tarjeta-indice">
+                <h3>10. SUBCONSULTAS</h3>
                 <h5 class="enlacesInternos">
                     SELECT dentro de SELECT
                 </h5>
-
             </a>
 
-
         </div>
+
+        <p>
+            <a class="enlacesInternos" href="#introduccion">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#select">
+                ↓ Siguiente
+            </a>
+        </p>
 
     </section>
 
 
     <!-- =========================
-         ESTRUCTURA SELECT
+         SELECT
     ========================== -->
 
-    <section class="bloque">
+    <section class="bloque" id="select">
 
-        <h2>🧩 Estructura de una consulta</h2>
+        <h2>1. SELECT</h2>
 
         <p>
-            Una consulta puede combinar
-            varias cláusulas.
+            <span class="clave">SELECT</span>
+            se utiliza para consultar
+            información almacenada en una tabla.
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos;
+        </pre>
+
+        <p>
+            El símbolo
+            <span class="clave">*</span>
+            indica que queremos mostrar
+            todas las columnas.
+        </p>
+
+        <p>
+            También podemos elegir
+            columnas específicas.
+        </p>
+
+        <pre>
+SELECT nombre, edad
+FROM alumnos;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#indice">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#where">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         WHERE
+    ========================== -->
+
+    <section class="bloque" id="where">
+
+        <h2>2. WHERE</h2>
+
+        <p>
+            <span class="clave">WHERE</span>
+            permite filtrar registros
+            utilizando una condición.
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos
+WHERE edad >= 18;
+        </pre>
+
+        <p>
+            Solamente se mostrarán
+            los alumnos que cumplan
+            la condición.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#select">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#distinct">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DISTINCT
+    ========================== -->
+
+    <section class="bloque" id="distinct">
+
+        <h2>3. DISTINCT</h2>
+
+        <p>
+            <span class="clave">DISTINCT</span>
+            evita mostrar valores repetidos.
+        </p>
+
+        <pre>
+SELECT DISTINCT ciudad
+FROM alumnos;
+        </pre>
+
+        <p>
+            Si varios alumnos viven
+            en la misma ciudad,
+            cada ciudad aparecerá una sola vez.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#where">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#order-by">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ORDER BY
+    ========================== -->
+
+    <section class="bloque" id="order-by">
+
+        <h2>4. ORDER BY</h2>
+
+        <p>
+            <span class="clave">ORDER BY</span>
+            permite ordenar los resultados.
+        </p>
+
+        <pre>
+SELECT nombre, edad
+FROM alumnos
+ORDER BY nombre;
+        </pre>
+
+        <p>
+            Podemos indicar el sentido:
+        </p>
+
+        <pre>
+ORDER BY edad ASC;
+
+ORDER BY edad DESC;
+        </pre>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>ASC</h3>
+                <p>Orden ascendente.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>DESC</h3>
+                <p>Orden descendente.</p>
+            </div>
+
+        </div>
+
+        <p>
+            <a class="enlacesInternos" href="#distinct">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#limit">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         LIMIT
+    ========================== -->
+
+    <section class="bloque" id="limit">
+
+        <h2>5. LIMIT</h2>
+
+        <p>
+            <span class="clave">LIMIT</span>
+            permite limitar la cantidad
+            de registros mostrados.
+        </p>
+
+        <pre>
+SELECT *
+FROM alumnos
+LIMIT 5;
+        </pre>
+
+        <p>
+            En este caso se mostrarán
+            solamente cinco registros.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#order-by">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#group-by">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         GROUP BY
+    ========================== -->
+
+    <section class="bloque" id="group-by">
+
+        <h2>6. GROUP BY</h2>
+
+        <p>
+            <span class="clave">GROUP BY</span>
+            agrupa registros que tienen
+            un valor en común.
+        </p>
+
+        <pre>
+SELECT ciudad, COUNT(*)
+FROM alumnos
+GROUP BY ciudad;
+        </pre>
+
+        <p>
+            Esta consulta permite conocer
+            cuántos alumnos hay
+            en cada ciudad.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#limit">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#having">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         HAVING
+    ========================== -->
+
+    <section class="bloque" id="having">
+
+        <h2>7. HAVING</h2>
+
+        <p>
+            <span class="clave">HAVING</span>
+            permite aplicar condiciones
+            sobre los grupos creados
+            con GROUP BY.
+        </p>
+
+        <pre>
+SELECT ciudad, COUNT(*)
+FROM alumnos
+GROUP BY ciudad
+HAVING COUNT(*) > 5;
+        </pre>
+
+        <p>
+            Solo se mostrarán las ciudades
+            que tengan más de cinco alumnos.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#group-by">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#join">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         JOIN
+    ========================== -->
+
+    <section class="bloque" id="join">
+
+        <h2>8. JOIN</h2>
+
+        <p>
+            <span class="clave">JOIN</span>
+            permite combinar información
+            de diferentes tablas relacionadas.
+        </p>
+
+        <pre>
+SELECT alumnos.nombre, cursos.nombre
+FROM alumnos
+JOIN cursos
+ON alumnos.idCurso = cursos.idCurso;
+        </pre>
+
+        <p>
+            La condición
+            <span class="clave">ON</span>
+            indica cómo se relacionan
+            ambas tablas.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#having">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#funciones">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FUNCIONES
+    ========================== -->
+
+    <section class="bloque" id="funciones">
+
+        <h2>9. Funciones de agregación</h2>
+
+        <p>
+            Algunas funciones permiten realizar
+            cálculos sobre grupos de registros.
+        </p>
+
+        <div class="grid">
+
+            <div class="tarjeta">
+                <h3>COUNT()</h3>
+                <p>Cuenta registros.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>SUM()</h3>
+                <p>Suma valores.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>AVG()</h3>
+                <p>Calcula el promedio.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>MAX()</h3>
+                <p>Obtiene el valor máximo.</p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>MIN()</h3>
+                <p>Obtiene el valor mínimo.</p>
+            </div>
+
+        </div>
+
+        <pre>
+SELECT AVG(edad)
+FROM alumnos;
+        </pre>
+
+        <p>
+            <a class="enlacesInternos" href="#join">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#subconsultas">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SUBCONSULTAS
+    ========================== -->
+
+    <section class="bloque" id="subconsultas">
+
+        <h2>10. Subconsultas</h2>
+
+        <p>
+            Una subconsulta es una consulta
+            <span class="clave">SELECT</span>
+            dentro de otra consulta.
+        </p>
+
+        <pre>
+SELECT nombre
+FROM alumnos
+WHERE edad > (
+    SELECT AVG(edad)
+    FROM alumnos
+);
+        </pre>
+
+        <p>
+            Primero se calcula
+            el promedio de edad
+            y luego se muestran
+            los alumnos que están
+            por encima de ese promedio.
+        </p>
+
+        <p>
+            <a class="enlacesInternos" href="#funciones">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#resumen">
+                ↓ Siguiente
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <section class="bloque" id="resumen">
+
+        <h2>💡 Idea clave</h2>
+
+        <pre>
+SELECT
+   ↓
+Elegir datos
+   ↓
+FROM
+   ↓
+Elegir tabla
+   ↓
+WHERE
+   ↓
+Filtrar
+   ↓
+GROUP BY
+   ↓
+Agrupar
+   ↓
+HAVING
+   ↓
+Filtrar grupos
+   ↓
+ORDER BY
+   ↓
+Ordenar
+   ↓
+LIMIT
+   ↓
+Limitar resultados
+        </pre>
+
+        <p>
+            Una consulta completa puede tener:
         </p>
 
         <pre>
@@ -225,120 +681,13 @@ LIMIT cantidad;
         </pre>
 
         <p>
-            No todas las cláusulas
-            son obligatorias.
-        </p>
-
-    </section>
-
-
-    <!-- =========================
-         EJEMPLO
-    ========================== -->
-
-    <section class="bloque">
-
-        <h2>Ejemplo</h2>
-
-        <pre>
-SELECT nombre, edad
-FROM alumnos
-WHERE edad >= 18
-ORDER BY nombre;
-        </pre>
-
-        <p>
-            Esta consulta:
-        </p>
-
-        <div class="grid">
-
-            <div class="tarjeta">
-
-                <h3>SELECT</h3>
-
-                <p>
-                    Indica qué columnas
-                    queremos mostrar.
-                </p>
-
-            </div>
-
-
-            <div class="tarjeta">
-
-                <h3>FROM</h3>
-
-                <p>
-                    Indica de qué tabla
-                    obtenemos los datos.
-                </p>
-
-            </div>
-
-
-            <div class="tarjeta">
-
-                <h3>WHERE</h3>
-
-                <p>
-                    Filtra solamente
-                    los alumnos mayores
-                    o iguales a 18.
-                </p>
-
-            </div>
-
-
-            <div class="tarjeta">
-
-                <h3>ORDER BY</h3>
-
-                <p>
-                    Ordena el resultado
-                    por nombre.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         IDEA CLAVE
-    ========================== -->
-
-    <section class="bloque">
-
-        <h2>💡 Idea clave</h2>
-
-        <pre>
-DQL
- ↓
-SELECT
- ↓
-Consultar información
- ↓
-FROM
-WHERE
-GROUP BY
-HAVING
-ORDER BY
-LIMIT
-JOIN
-        </pre>
-
-        <p>
-            <span class="importante">
-                SELECT es la instrucción principal.
-            </span>
-        </p>
-
-        <p>
-            Las demás palabras permiten
-            construir consultas más completas.
+            <a class="enlacesInternos" href="#subconsultas">
+                ↑ Anterior
+            </a>
+            |
+            <a class="enlacesInternos" href="#inicio">
+                ↑ Volver al comienzo
+            </a>
         </p>
 
     </section>
